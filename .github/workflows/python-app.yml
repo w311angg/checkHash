@@ -11,13 +11,12 @@ on:
   watch:
     types: started
   schedule:
-    - cron: '0 * * * *'
+    - cron: '27 * * * *'
 
 jobs:
   build:
 
     runs-on: ubuntu-latest
-    environment: Production
     if: github.event.repository.owner.id == github.event.sender.id
 
     steps:
