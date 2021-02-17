@@ -5,13 +5,15 @@ a='number=2&uid=9891&card=1060'
 b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':'5d7td4plvacn9v3k598rj9bj97'}).json()
 实际=b['data']['rate']
 在线=b['data']['online']
-print(目标,实际,在线)
+发送内容=应挖'+str(目标)+'，实挖'+str(实际)+'，在线'+str(在线)
+print(发送内容)
+
 def check():
   if 实际<目标 or 在线<2:
     return True
   else:
-    return False
     print('挖矿达标')
+    return False
 
 if check():
   import smtplib
@@ -22,7 +24,7 @@ if check():
   my_pass = os.getenv('pass')              # 发件人邮箱密码
   my_user='w311ang@qq.com'      # 收件人邮箱账号，我这边发送给自己
   def mail():
-      msg=MIMEText('应挖'+str(目标)+'，实挖'+str(实际)+'，在线'+str(在线),'plain','utf-8')
+      msg=MIMEText(发送内容,'plain','utf-8')
       msg['From']=formataddr(["checkHash",my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
       msg['To']=formataddr(["WG",my_user])              # 括号里的对应收件人邮箱昵称、收件人邮箱账号
       msg['Subject']="哈希宝挖矿不达标"                # 邮件的主题，也可以说是标题
