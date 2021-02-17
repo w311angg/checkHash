@@ -6,7 +6,10 @@ b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PH
 实际=b['data']['rate']
 在线=b['data']['online']
 #实际=0
-发送内容='应挖'+str(目标)+'，实挖'+str(实际)+'，在线'+str(在线)
+发送内容='应挖'+str(目标)+'，实挖'+str(实际)+'，在线'+str(在线)+'\n'
+c=requests.post('http://behash.com/api/v2/terminal',data='uid=9891').json()['data']
+for list in c:
+  发送内容+=list[0],list[1]+'\n'
 print(发送内容)
 
 def check():
