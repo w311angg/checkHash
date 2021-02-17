@@ -1,4 +1,5 @@
 import requests
+import os
 a='number=2&uid=9891&card=1060'
 目标=requests.post('http://behash.com/api/v2/CalByCard',data=a).json()['data']['incomeNum']
 b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':'5d7td4plvacn9v3k598rj9bj97'}).json()
@@ -11,14 +12,13 @@ def check():
   else:
     return False
 
-
 if check():
   import smtplib
   from email.mime.text import MIMEText
   from email.utils import formataddr
    
   my_sender='w311ang@qq.com'    # 发件人邮箱账号
-  my_pass = 'fetewmcynscaddae'              # 发件人邮箱密码
+  my_pass = os.getenv('pass')              # 发件人邮箱密码
   my_user='w311ang@qq.com'      # 收件人邮箱账号，我这边发送给自己
   def mail():
       msg=MIMEText('应挖'+str(目标)+'，实挖'+str(实际)+'，在线'+str(在线),'plain','utf-8')
