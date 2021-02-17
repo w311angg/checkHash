@@ -5,9 +5,13 @@ a='number=2&uid=9891&card=1060'
 b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':'5d7td4plvacn9v3k598rj9bj97'}).json()
 实际=b['data']['rate']
 在线=b['data']['online']
-c=requests.post('http://behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':'5d7td4plvacn9v3k598rj9bj97'}).json()['data']
 #实际=0
-发送内容='应挖'+str(目标)+'，实挖'+str(实际)+'，在线'+str(在线)+'\n'+str(c)
+c=list(requests.post('http://behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':'5d7td4plvacn9v3k598rj9bj97'}).json()['data'][0].items())
+在线情况=''
+for i in c:
+  d=list(i)
+  在线情况+=d[0]+' '+d[1]+'\n'
+发送内容='应挖'+str(目标)+'，实挖'+str(实际)+'，在线'+str(在线)+'\n'+在线情况
 print(发送内容)
 
 def check():
