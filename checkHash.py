@@ -7,9 +7,11 @@ b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PH
 在线=b['data']['online']
 发送内容='应挖'+str(目标)+'，实挖'+str(实际)+'，在线'+str(在线)
 print(发送内容)
+实际=0
 
 def check():
   if 实际<目标 or 在线<2:
+    print('挖矿不达标')
     return True
   else:
     print('挖矿达标')
