@@ -7,7 +7,7 @@ b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PH
 在线=b['data']['online']
 c=requests.post('http://behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':'5d7td4plvacn9v3k598rj9bj97'}).json()['data']
 #实际=0
-发送内容='应挖'+str(目标)+'，实挖'+str(实际)+'，在线'+str(在线)+'\n'+c
+发送内容='应挖'+str(目标)+'，实挖'+str(实际)+'，在线'+str(在线)+'\n'+str(c)
 print(发送内容)
 
 def check():
