@@ -7,10 +7,11 @@ b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PH
 在线=b['data']['online']
 
 def check():
-  if 实际>目标 or 在线<2:
+  if 实际<目标 or 在线<2:
     return True
   else:
     return False
+    print('挖矿达标')
 
 if check():
   import smtplib
@@ -31,3 +32,4 @@ if check():
       server.sendmail(my_sender,[my_user,],msg.as_string())  # 括号中对应的是发件人邮箱账号、收件人邮箱账号、发送邮件
       server.quit()  # 关闭连接
   mail()
+  print('邮件已发送')
