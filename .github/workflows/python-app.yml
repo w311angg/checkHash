@@ -17,8 +17,8 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
+    environment: Production
     if: github.event.repository.owner.id == github.event.sender.id
-    environment: checkHash
 
     steps:
     - uses: actions/checkout@v2
