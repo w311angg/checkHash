@@ -1,14 +1,16 @@
 import requests
 import os
-a='number=2&uid=9891&card=1060'
+uid=os.getenv('uid')
+a='number=2&uid=%s&card=1060'%(uid)
 目标=requests.post('http://behash.com/api/v2/CalByCard',data=a).json()['data']['incomeNum']
-e='number=1&uid=9891&card=1060'
+e='number=1&uid=%s&card=1060'%(uid)
 目标1=requests.post('http://behash.com/api/v2/CalByCard',data=e).json()['data']['incomeNum']
-b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':'5d7td4plvacn9v3k598rj9bj97'}).json()
+phps=os.getenv('phps')
+b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':phps}).json()
 实际=b['data']['rate']
 在线=b['data']['online']
 #实际=0
-c=list(requests.post('http://behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':'5d7td4plvacn9v3k598rj9bj97'}).json()['data'][0].items())
+c=list(requests.post('http://behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json()['data'][0].items())
 在线情况=''
 for i in c:
   d=list(i)
@@ -37,9 +39,9 @@ if check():
   from email.mime.text import MIMEText
   from email.utils import formataddr
    
-  my_sender='w311ang@qq.com'    # 发件人邮箱账号
+  my_sender=os.getenv('sender')    # 发件人邮箱账号
   my_pass = os.getenv('pass')              # 发件人邮箱密码
-  my_user='wg@runz.tk'      # 收件人邮箱账号，我这边发送给自己
+  my_user=os.getenv('to')      # 收件人邮箱账号，我这边发送给自己
   def mail():
       msg=MIMEText(发送内容,'plain','utf-8')
       msg['From']=formataddr(["checkHash",my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
