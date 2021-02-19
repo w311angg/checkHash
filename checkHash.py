@@ -7,7 +7,7 @@ e='number=1&uid=9891&card=1060'
 b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':'5d7td4plvacn9v3k598rj9bj97'}).json()
 实际=b['data']['rate']
 在线=b['data']['online']
-#实际=0
+实际=0
 c=list(requests.post('http://behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':'5d7td4plvacn9v3k598rj9bj97'}).json()['data'][0].items())
 在线情况=''
 for i in c:
