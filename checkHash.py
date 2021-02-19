@@ -4,7 +4,9 @@ uid=os.getenv('uid')
 a='number=2&uid=%s&card=1060'%(uid)
 目标=requests.post('http://behash.com/api/v2/CalByCard',data=a).json()['data']['incomeNum']
 e='number=1&uid=%s&card=1060'%(uid)
-目标1=requests.post('http://behash.com/api/v2/CalByCard',data=e).json()['data']['incomeNum']
+f=requests.post('http://behash.com/api/v2/CalByCard',data=e).json()['data']
+目标1=f['incomeNum']
+速度1=f['speed']
 phps=os.getenv('phps')
 b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':phps}).json()
 实际=b['data']['rate']
@@ -15,16 +17,17 @@ c=list(requests.post('http://behash.com/api/v2/terminal',data='uid=9891',cookies
 for i in c:
   d=list(i)
   在线情况+=d[0]+' '+d[1]+'\n'
-发送内容='应挖'+str(目标)+'，实挖'+str(实际)+'('+str(round(实际-目标,2))+')'+'，在线'+str(在线)+'\n'+在线情况
+g=str(round(实际-目标,2))
+发送内容='应挖'+str(目标)+'，实挖'+str(实际)+'('+g+')'+'，在线'+str(在线)+'\n'+'单机速度 '+速度1+在线情况
 print(发送内容)
 发送主题=''
 
 def check():
-  global 发送主题
+  global 发送主题,g
   if 实际<目标 or 在线<2:
     if 实际<目标1:
       发送主题='⚠单台电脑哈希宝挖矿不达标'
-      发送内容='应挖'+str(目标)+'，实挖'+str(实际)+'('+str(round(实际-目标1,2))+')'+'，在线'+str(在线)+'\n'+在线情况
+      g=str(round(实际-目标1,2))
       print(发送主题)
       return True
     发送主题='哈希宝挖矿不达标'
