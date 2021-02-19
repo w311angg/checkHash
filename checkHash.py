@@ -29,7 +29,7 @@ if check():
    
   my_sender='w311ang@qq.com'    # 发件人邮箱账号
   my_pass = os.getenv('pass')              # 发件人邮箱密码
-  my_user='w311ang@qq.com'      # 收件人邮箱账号，我这边发送给自己
+  my_user='checkHash@runz.tk'      # 收件人邮箱账号，我这边发送给自己
   def mail():
       msg=MIMEText(发送内容,'plain','utf-8')
       msg['From']=formataddr(["checkHash",my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
