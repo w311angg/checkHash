@@ -11,7 +11,7 @@ c=list(requests.post('http://behash.com/api/v2/terminal',data='uid=9891',cookies
 for i in c:
   d=list(i)
   在线情况+=d[0]+' '+d[1]+'\n'
-发送内容='应挖'+str(目标)+'，实挖'+str(实际)+'('+(实际-目标)+')'+'，在线'+str(在线)+'\n'+在线情况
+发送内容='应挖'+str(目标)+'，实挖'+str(实际)+'('+str(实际-目标)+')'+'，在线'+str(在线)+'\n'+在线情况
 print(发送内容)
 
 def check():
