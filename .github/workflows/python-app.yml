@@ -32,5 +32,9 @@ jobs:
     - name: Run
       env:
         pass: ${{ secrets.pass }}
+        uid: ${{ secrets.uid }}
+        phps: ${{ secrets.phps }}
+        sender: ${{ secrets.sender }}
+        to: ${{ secrets.to }}
       run: |
         python checkHash.py
