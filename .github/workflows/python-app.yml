@@ -18,6 +18,7 @@ jobs:
 
     runs-on: ubuntu-latest
     if: github.event.repository.owner.id == github.event.sender.id
+    environment: Production
 
     steps:
     - uses: actions/checkout@v2
