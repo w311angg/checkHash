@@ -2,6 +2,7 @@ import requests
 import os
 uid=os.getenv('uid')
 a='number=2&uid=%s&card=1060'%(uid)
+print(requests.post('http://behash.com/api/v2/CalByCard',data=a).text)
 目标=requests.post('http://behash.com/api/v2/CalByCard',data=a).json()['data']['incomeNum']
 e='number=1&uid=%s&card=1060'%(uid)
 f=requests.post('http://behash.com/api/v2/CalByCard',data=e).json()['data']
