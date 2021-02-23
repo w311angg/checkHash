@@ -34,7 +34,8 @@ def check():
       return True
     发送主题='哈希宝挖矿不达标'
     print(发送主题)
-    return True
+    #return True
+    return False
   else:
     print('挖矿达标')
     return False
