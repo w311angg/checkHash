@@ -14,11 +14,14 @@ b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PH
 实际=b['data']['rate']
 在线=b['data']['online']
 #实际=0
-c=list(requests.post('http://behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json()['data'][0].items())
 在线情况=''
-for i in c:
-  d=list(i)
-  在线情况+=d[0]+' '+d[1]+'\n'
+if 在线!=0:
+  c=list(requests.post('http://behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json()['data'][0].items())
+  for i in c:
+    d=list(i)
+    在线情况+=d[0]+' '+d[1]+'\n'
+else:
+  在线情况=''
 g=str(round(实际-目标,2))
 发送内容='应挖'+str(目标)+'，实挖'+str(实际)+'('+g+')'+'，在线'+str(在线)+'\n'+'基准速度 '+速度1+'M\n'+在线情况
 print(发送内容)
