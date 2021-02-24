@@ -15,6 +15,7 @@ b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PH
 在线=b['data']['online']
 #实际=0
 在线情况=''
+在线=0
 if 在线!=0:
   c=list(requests.post('http://behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json()['data'][0].items())
   for i in c:
