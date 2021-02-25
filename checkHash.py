@@ -8,8 +8,8 @@ e='number=1&uid=%s&card=1060'%(uid)
 f=requests.post('http://behash.com/api/v2/CalByCard',data=e).json()['data']
 目标1=f['incomeNum']
 速度1=f['speed']
-h=requests.post('http://behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')}).cookies['PHPSESSID']
-phps=h
+h=requests.post('http://behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')}).cookies
+phps=h['PHPSESSID']
 b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':phps}).json()
 print(b)
 实际=b['data']['rate']
