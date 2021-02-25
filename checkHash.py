@@ -1,6 +1,7 @@
 import requests
 import os
-uid=os.getenv('uid')
+h=requests.post('http://behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
+uid=h.json()['data']['uid']
 a='number=2&uid=%s&card=1060'%(uid)
 #print(requests.post('http://behash.com/api/v2/CalByCard',data=a).text)
 目标=requests.post('http://behash.com/api/v2/CalByCard',data=a).json()['data']['incomeNum']
@@ -8,10 +9,9 @@ e='number=1&uid=%s&card=1060'%(uid)
 f=requests.post('http://behash.com/api/v2/CalByCard',data=e).json()['data']
 目标1=f['incomeNum']
 速度1=f['speed']
-h=requests.post('http://behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')}).cookies
-phps=h['PHPSESSID']
+phps=h.cookies['PHPSESSID']
 b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':phps}).json()
-print(b)
+#print(b)
 实际=b['data']['rate']
 在线=b['data']['online']
 #实际=0
