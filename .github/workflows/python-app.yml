@@ -33,7 +33,6 @@ jobs:
     - name: Run
       env:
         pass: ${{ secrets.pass }}
-        uid: ${{ secrets.uid }}
         account: ${{ secrets.account }}
         password: ${{ secrets.password }}
         sender: ${{ secrets.sender }}
