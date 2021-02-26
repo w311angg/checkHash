@@ -1,5 +1,9 @@
 import requests
 import os
+import random
+import time
+wait=random.randint(0,9)*60
+time.sleep(wait)
 h=requests.post('http://behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
 uid=h.json()['data']['uid']
 a='number=2&uid=%s&card=1060'%(uid)
