@@ -2,6 +2,16 @@ import requests
 import os
 import random
 import time
+num=0
+with open('num.txt',mode='r') as f:
+  num=num(f.read())
+if num>1:
+  num=0
+  with open('num.txt',mode='w') as f:
+    f.write(str(num))
+  exit()
+else:
+  num+=1
 wait=random.randint(1,9)
 print('等'+str(wait)+'分钟')
 time.sleep(wait*60)
