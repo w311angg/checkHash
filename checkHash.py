@@ -7,12 +7,7 @@ with open('num.txt',mode='r') as f:
   num=int(f.read())
 if num>1:
   print('连续不达标2次，不执行')
-  num=0
-  with open('num.txt',mode='w') as f:
-    f.write(str(num))
   exit()
-else:
-  num+=1
 wait=random.randint(1,9)
 print('等'+str(wait)+'分钟')
 #time.sleep(wait*60)
@@ -44,7 +39,7 @@ print(发送内容)
 发送主题=''
 
 def check():
-  global 发送主题,g
+  global 发送主题,g,num
   if 实际<目标 or 在线<2:
     if 实际<目标1:
       发送主题='⚠单台电脑哈希宝挖矿不达标'
@@ -53,11 +48,15 @@ def check():
       return True
     发送主题='哈希宝挖矿不达标'
     print(发送主题)
+    num+=1
     #return True
     return False
   else:
     print('挖矿达标')
+    num=0
     return False
+with open('num.txt',mode='w') as f:
+  f.write(str(num))
 
 if check():
   import smtplib
