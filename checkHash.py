@@ -49,6 +49,7 @@ def check():
     发送主题='哈希宝挖矿不达标'
     print(发送主题)
     num+=1
+    print('已连续'+str(num)+'次未达标')
     #return True
     return False
   else:
