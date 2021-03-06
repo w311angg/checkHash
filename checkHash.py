@@ -15,7 +15,7 @@ else:
   num+=1
 wait=random.randint(1,9)
 print('等'+str(wait)+'分钟')
-time.sleep(wait*60)
+#time.sleep(wait*60)
 h=requests.post('http://behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
 uid=h.json()['data']['uid']
 a='number=2&uid=%s&card=1060'%(uid)
