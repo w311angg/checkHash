@@ -55,7 +55,7 @@ def check():
 with open('num.txt',mode='w') as f:
   f.write(str(num))
 
-if check():
+if check() and num<2:
   import smtplib
   from email.mime.text import MIMEText
   from email.utils import formataddr
