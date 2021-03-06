@@ -2,13 +2,13 @@ import requests
 import os
 import random
 import time
-numm=0
+num=0
 with open('num.txt',mode='r') as f:
-  numm=num(f.read())
-if numm>1:
-  numm=0
+  num=int(f.read())
+if num>1:
+  num=0
   with open('num.txt',mode='w') as f:
-    f.write(str(numm))
+    f.write(str(num))
   exit()
 else:
   numm+=1
