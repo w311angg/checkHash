@@ -2,12 +2,12 @@ import requests
 import os
 import random
 import time
-num=2
+num=0
 with open('num.txt',mode='r') as f:
   num=int(f.read())
 wait=random.randint(1,9)
 print('等'+str(wait)+'分钟')
-#time.sleep(wait*60)
+time.sleep(wait*60)
 h=requests.post('http://behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
 uid=h.json()['data']['uid']
 a='number=2&uid=%s&card=1060'%(uid)
