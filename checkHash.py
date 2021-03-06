@@ -2,7 +2,7 @@ import requests
 import os
 import random
 import time
-num=0
+num=2
 with open('num.txt',mode='r') as f:
   num=int(f.read())
 wait=random.randint(1,9)
