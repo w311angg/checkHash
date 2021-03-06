@@ -7,7 +7,9 @@ with open('num.txt',mode='r') as f:
   num=int(f.read())
 wait=random.randint(1,9)
 print('等'+str(wait)+'分钟')
-if os.getenv('on')=='schedule':
+on=os.getenv('on')
+print(on)
+if on=='schedule':
   time.sleep(wait*60)
 h=requests.post('http://behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
 uid=h.json()['data']['uid']
