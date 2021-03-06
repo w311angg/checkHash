@@ -12,7 +12,7 @@ if num>1:
     f.write(str(num))
   exit()
 else:
-  numm+=1
+  num+=1
 wait=random.randint(1,9)
 print('等'+str(wait)+'分钟')
 time.sleep(wait*60)
