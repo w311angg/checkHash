@@ -6,6 +6,7 @@ num=0
 with open('num.txt',mode='r') as f:
   num=int(f.read())
 if num>1:
+  print('连续不达标2次，不执行')
   num=0
   with open('num.txt',mode='w') as f:
     f.write(str(num))
