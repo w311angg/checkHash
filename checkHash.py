@@ -42,6 +42,8 @@ def check():
   global 发送主题,g,num
   if 实际<目标 or 在线<2:
     num+=1
+    with open('num.txt',mode='w') as f:
+      f.write(str(num))
     if 实际<目标1:
       发送主题='⚠单台电脑哈希宝挖矿不达标'
       g=str(round(实际-目标1,2))
@@ -57,8 +59,6 @@ def check():
     print('挖矿达标')
     num=0
     return False
-  with open('num.txt',mode='w') as f:
-    f.write(str(num))
 
 if check() and num<2:
   import smtplib
