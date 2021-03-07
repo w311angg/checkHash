@@ -22,7 +22,7 @@ f=requests.post('http://behash.com/api/v2/CalByCard',data=e).json()['data']
 速度1=f['speed']
 phps=h.cookies['PHPSESSID']
 b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':phps}).json()
-#print(b)
+print(b)
 实际=b['data']['rate']
 在线=b['data']['online']
 #实际=0
