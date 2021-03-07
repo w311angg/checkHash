@@ -45,6 +45,8 @@ def check():
       发送主题='⚠单台电脑哈希宝挖矿不达标'
       g=str(round(实际-目标1,2))
       print(发送主题)
+      num+=1
+      print('已连续'+str(num)+'次未达标')
       return True
     发送主题='哈希宝挖矿不达标'
     print(发送主题)
