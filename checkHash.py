@@ -22,13 +22,14 @@ f=requests.post('http://behash.com/api/v2/CalByCard',data=e).json()['data']
 速度1=f['speed']
 phps=h.cookies['PHPSESSID']
 b=requests.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':phps}).json()
-print(b)
+#print(b)
 实际=b['data']['rate']
 在线=b['data']['online']
 #实际=0
 在线情况=''
 #在线=0
 if 在线!=0:
+  print(requests.post('http://behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json())
   c=list(requests.post('http://behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json()['data'][0].items())
   for i in c:
     d=list(i)
