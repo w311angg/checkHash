@@ -57,9 +57,8 @@ def check():
     print('挖矿达标')
     num=0
     return False
-print(num)
-with open('num.txt',mode='w') as f:
-  f.write(str(num))
+  with open('num.txt',mode='w') as f:
+    f.write(str(num))
 
 if check() and num<2:
   import smtplib
