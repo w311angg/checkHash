@@ -38,7 +38,7 @@ jobs:
         config: ${{ secrets.config }}
       run: |
         sudo bash -c 'bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)'
-        echo $config > /usr/local/etc/v2ray/config.json
+        sudo sh -c 'echo $config|base64 -d > /usr/local/etc/v2ray/config.json'
         sudo systemctl restart v2ray
     - name: Run
       env:
