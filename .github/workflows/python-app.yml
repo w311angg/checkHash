@@ -39,6 +39,7 @@ jobs:
       run: |
         sudo bash -c 'bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)'
         sudo sh -c 'echo $config|base64 -d > /usr/local/etc/v2ray/config.json'
+        sudo cat /usr/local/etc/v2ray/config.json
         sudo systemctl start v2ray
         sudo systemctl status v2ray
     - name: Run
