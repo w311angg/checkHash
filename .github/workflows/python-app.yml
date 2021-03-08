@@ -33,6 +33,13 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Setup v2ray
+      env:
+        config: ${{ secrets.config }}
+      run: |
+        bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
+        echo $config > /usr/local/etc/v2ray/config.json
+        systemctl restart v2ray
     - name: Run
       env:
         on: ${{ github.event_name }}
