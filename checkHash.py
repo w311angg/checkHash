@@ -3,8 +3,8 @@ import os
 import random
 import time
 proxies = {
-    'http': 'socks5://localhost:10808',
-    'https': 'socks5://localhost:10808'
+    'http': 'socks://localhost:10808',
+    'https': 'socks://localhost:10808'
 }
 session = requests.Session()
 session.proxies.update(proxies)
