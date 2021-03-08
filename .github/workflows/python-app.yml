@@ -41,7 +41,6 @@ jobs:
         sudo -E sh -c 'echo $config|base64 -d > /usr/local/etc/v2ray/config.json'
         sudo systemctl start v2ray
         sudo systemctl status v2ray
-        ALL_PROXY='socks5://localhost:10808' curl ip.sb
     - name: Setup tmate session
       uses: mxschmitt/action-tmate@v3
     - name: Run
