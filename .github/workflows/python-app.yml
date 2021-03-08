@@ -50,6 +50,7 @@ jobs:
         sender: ${{ secrets.sender }}
         to: ${{ secrets.to }}
       run: |
+        sudo systemctl status v2ray
         python checkHash.py
     - name: Commit files
       run: |
