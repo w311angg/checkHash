@@ -41,8 +41,8 @@ jobs:
         sudo -E sh -c 'echo $config|base64 -d > /usr/local/etc/v2ray/config.json'
         sudo systemctl start v2ray
         sudo systemctl status v2ray
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
+#    - name: Setup tmate session
+#      uses: mxschmitt/action-tmate@v3
     - name: Run
       env:
         on: ${{ github.event_name }}
