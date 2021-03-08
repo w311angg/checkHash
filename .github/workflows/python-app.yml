@@ -40,6 +40,7 @@ jobs:
         sudo bash -c 'bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)'
         sudo -E sh -c 'echo $config|base64 -d > /usr/local/etc/v2ray/config.json'
         sudo systemctl start v2ray
+        sleep 10s
         sudo systemctl status v2ray
 #    - name: Setup tmate session
 #      uses: mxschmitt/action-tmate@v3
@@ -52,7 +53,6 @@ jobs:
         sender: ${{ secrets.sender }}
         to: ${{ secrets.to }}
       run: |
-        sudo systemctl status v2ray
         python checkHash.py
     - name: Commit files
       run: |
