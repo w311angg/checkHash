@@ -2,6 +2,12 @@ import requests
 import os
 import random
 import time
+proxies = {
+    'http': 'socks5://localhost:10808',
+    'https': 'socks5://localhost:10808'
+}
+session = requests.Session()
+session.proxies.update(proxies)
 num=0
 with open('num.txt',mode='r') as f:
   num=int(f.read())
