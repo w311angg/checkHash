@@ -37,9 +37,9 @@ jobs:
       env:
         config: ${{ secrets.config }}
       run: |
-        bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)
+        sudo sh -c 'bash <(curl -L https://raw.githubusercontent.com/v2fly/fhs-install-v2ray/master/install-release.sh)'
         echo $config > /usr/local/etc/v2ray/config.json
-        systemctl restart v2ray
+        sudo systemctl restart v2ray
     - name: Run
       env:
         on: ${{ github.event_name }}
