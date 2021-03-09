@@ -18,7 +18,7 @@ on=os.getenv('on')
 #print(on)
 if on=='schedule':
   time.sleep(wait*60)
-time.sleep(1)
+time.sleep(3)
 h=session.post('http://behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
 #print(h.text)
 uid=h.json()['data']['uid']
