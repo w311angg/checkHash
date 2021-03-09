@@ -65,7 +65,15 @@ def check():
     return False
   else:
     print('挖矿达标')
+    if num!=0:
+      发送主题='哈希宝挖矿已达标'
+      num=0
+      with open('num.txt',mode='w') as f:
+        f.write(str(num))
+      return True
     num=0
+    with open('num.txt',mode='w') as f:
+      f.write(str(num))
     return False
 
 if check() and num<2:
