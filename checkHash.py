@@ -2,6 +2,7 @@ import requests
 import os
 import random
 import time
+from tenacity import retry
 proxies = {
     'http': 'socks5://localhost:10808',
     'https': 'socks5://localhost:10808'
@@ -18,8 +19,11 @@ on=os.getenv('on')
 #print(on)
 if on=='schedule':
   time.sleep(wait*60)
-time.sleep(3)
-h=session.post('http://behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
+@retry
+def login():
+  global h
+  h=session.post('http://behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
+login()
 #print(h.text)
 uid=h.json()['data']['uid']
 a='number=2&uid=%s&card=1060'%(uid)
