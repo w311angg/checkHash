@@ -8,7 +8,7 @@ proxies = {
 }
 session = requests.Session()
 session.proxies.update(proxies)
-print(session.get('https://www.google.com/').text)
+#print(session.get('https://www.google.com/').text)
 num=0
 with open('num.txt',mode='r') as f:
   num=int(f.read())
@@ -18,7 +18,7 @@ on=os.getenv('on')
 #print(on)
 if on=='schedule':
   time.sleep(wait*60)
-time.sleep(10)
+time.sleep(1)
 h=session.post('http://behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
 #print(h.text)
 uid=h.json()['data']['uid']
