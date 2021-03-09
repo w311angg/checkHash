@@ -8,7 +8,7 @@ proxies = {
 }
 session = requests.Session()
 session.proxies.update(proxies)
-print(session.get('https://www.google.com/'))
+print(session.get('https://www.google.com/').text)
 num=0
 with open('num.txt',mode='r') as f:
   num=int(f.read())
