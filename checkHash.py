@@ -49,14 +49,14 @@ print(发送内容)
 def check():
   global 发送主题,g,num
   if 实际<目标 or 在线<2:
-    num+=1
-    with open('num.txt',mode='w') as f:
-      f.write(str(num))
     if 实际<目标1:
       发送主题='⚠单台电脑哈希宝挖矿不达标'
       g=str(round(实际-目标1,2))
       print(发送主题)
       print('已连续'+str(num)+'次未达标')
+      num+=1
+      with open('num.txt',mode='w') as f:
+        f.write(str(num))
       return True
     发送主题='哈希宝挖矿不达标'
     print(发送主题)
@@ -72,9 +72,6 @@ def check():
       with open('num.txt',mode='w') as f:
         f.write(str(num))
       return True
-    num=0
-    with open('num.txt',mode='w') as f:
-      f.write(str(num))
     return False
 
 if check() and num<2:
