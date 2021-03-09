@@ -67,6 +67,7 @@ def check():
     print('挖矿达标')
     if num!=0:
       发送主题='哈希宝挖矿已达标'
+      print(发送主题)
       num=0
       with open('num.txt',mode='w') as f:
         f.write(str(num))
