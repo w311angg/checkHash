@@ -24,7 +24,7 @@ def login():
   global h
   h=session.post('http://app.behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
 login()
-print(h.text)
+#print(h.text)
 uid=h.json()['data']['uid']
 a='number=2&uid=%s&card=1060'%(uid)
 #print(session.post('http://app.behash.com/api/v2/CalByCard',data=a).text)
