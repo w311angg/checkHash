@@ -22,7 +22,7 @@ if on=='schedule':
 @retry
 def login():
   global h
-  h=session.post('http://behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
+  h=session.post('http://app.behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
 login()
 print(h.text)
 uid=h.json()['data']['uid']
