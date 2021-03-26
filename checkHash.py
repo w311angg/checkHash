@@ -27,14 +27,14 @@ login()
 print(h.text)
 uid=h.json()['data']['uid']
 a='number=2&uid=%s&card=1060'%(uid)
-#print(session.post('http://behash.com/api/v2/CalByCard',data=a).text)
-目标=session.post('http://behash.com/api/v2/CalByCard',data=a).json()['data']['incomeNum']
+#print(session.post('http://app.behash.com/api/v2/CalByCard',data=a).text)
+目标=session.post('http://app.behash.com/api/v2/CalByCard',data=a).json()['data']['incomeNum']
 e='number=1&uid=%s&card=1060'%(uid)
-f=session.post('http://behash.com/api/v2/CalByCard',data=e).json()['data']
+f=session.post('http://app.behash.com/api/v2/CalByCard',data=e).json()['data']
 目标1=f['incomeNum']
 速度1=f['speed']
 phps=h.cookies['PHPSESSID']
-b=session.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':phps}).json()
+b=session.post('http://app.behash.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':phps}).json()
 #print(b)
 实际=b['data']['rate']
 在线=b['data']['online']
@@ -42,8 +42,8 @@ b=session.post('http://behash.com/api/v2/workdata',data='uid=9891',cookies={'PHP
 在线情况=''
 #在线=0
 if 在线!=0:
-  #print(session.post('http://behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json())
-  c=list(session.post('http://behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json()['data'][0].items())
+  #print(session.post('http://app.behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json())
+  c=list(session.post('http://app.behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json()['data'][0].items())
   for i in c:
     d=list(i)
     在线情况+=d[0]+' '+d[1]+'\n'
