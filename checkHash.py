@@ -4,8 +4,8 @@ import random
 import time
 from tenacity import retry
 proxies = {
-    'http': 'socks5://localhost:10808',
-    'https': 'socks5://localhost:10808'
+    'http': 'socks5://localhost:1080',
+    'https': 'socks5://localhost:1080'
 }
 session = requests.Session()
 session.proxies.update(proxies)
