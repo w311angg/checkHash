@@ -54,7 +54,7 @@ jobs:
         sudo systemctl daemon-reload
         sudo systemctl start shadowsocks
         sleep 3s
-        systemctl status shadowsocks
+        systemctl status --no-pager shadowsocks
 #    - name: Setup tmate session
 #      uses: mxschmitt/action-tmate@v3
     - name: Run
