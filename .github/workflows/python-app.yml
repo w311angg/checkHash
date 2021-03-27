@@ -43,9 +43,11 @@ jobs:
         [Unit]
         Description=Shadowsocks
         After=network.target
+
         [Service]
         ExecStart=ss-local -c /etc/shadowsocks-libev/config.json
         Rnestart=on-abort
+
         [Install]
         WantedBy=multi-user.target\
         ">/etc/systemd/system/shadowsocks.service'
