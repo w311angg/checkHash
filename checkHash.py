@@ -2,7 +2,7 @@ import requests
 import os
 import random
 import time
-from tenacity import retry
+from tenacity import retry, stop_after_attempt
 proxies = {
     'http': 'socks5://localhost:1080',
     'https': 'socks5://localhost:1080'
