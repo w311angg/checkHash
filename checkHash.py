@@ -9,6 +9,7 @@ proxies = {
 }
 session = requests.Session()
 session.proxies.update(proxies)
+session.headers.update({'user-agent':'Dalvik/2.1.0 (Linux; U; Android 10; ONEPLUS A3010 Build/QQ3A.200805.001)'})
 #print(session.get('https://www.google.com/').text)
 num=0
 with open('num.txt',mode='r') as f:
