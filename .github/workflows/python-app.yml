@@ -38,7 +38,7 @@ jobs:
       env:
         config: ${{ secrets.config }}
       run: |
-        sudo apt-get install shadowsocks-libev
+        sudo apt-get install shadowsocks-libev simple-obfs
         sudo -E sh -c 'echo $config|base64 -d > /etc/shadowsocks-libev/config.json'
         sudo sh -c 'echo "\
         [Unit]
