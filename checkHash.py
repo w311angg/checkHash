@@ -14,6 +14,7 @@ session.headers.update({'user-agent':'Dalvik/2.1.0 (Linux; U; Android 10; ONEPLU
 try:
   with open('cookies.txt','rb') as f:
     dict=pickle.load(f)
+    print(f)
     session.cookies.update(dict['cookies'])
     uid=dict['uid']
 except FileNotFoundError:
