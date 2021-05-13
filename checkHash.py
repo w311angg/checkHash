@@ -2,6 +2,7 @@ import requests
 import os
 import random
 import time
+import pickle
 from tenacity import retry, stop_after_attempt
 proxies = {
     'http': 'socks5://localhost:1080',
@@ -10,6 +11,14 @@ proxies = {
 session = requests.Session()
 session.proxies.update(proxies)
 session.headers.update({'user-agent':'Dalvik/2.1.0 (Linux; U; Android 10; ONEPLUS A3010 Build/QQ3A.200805.001)'})
+try:
+  with open('cookies.txt','rb') as f:
+    dict=pickle.load(f)
+    session.cookies.update(dict['cookies'])
+    uid=dict['uid']
+except FileNotFoundError:
+  first=True
+  print('FileNotFoundError')
 #print(session.get('https://www.google.com/').text)
 num=0
 with open('num.txt',mode='r') as f:
@@ -22,11 +31,12 @@ if on=='schedule':
   time.sleep(wait*60)
 @retry(stop=stop_after_attempt(10))
 def login():
-  global h
+  global h,uid
   h=session.post('http://app.behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
-login()
+  uid=h.json()['data']['uid']
+if s.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).json()['code']==400 or first:
+  login()
 #print(h.text)
-uid=h.json()['data']['uid']
 a='number=2&uid=%s&card=1060'%(uid)
 #print(session.post('http://app.behash.com/api/v2/CalByCard',data=a).text)
 目标=session.post('http://app.behash.com/api/v2/CalByCard',data=a).json()['data']['incomeNum']
@@ -101,3 +111,6 @@ if check() and num<2:
       server.quit()  # 关闭连接
   mail()
   print('邮件已发送')
+
+with open('cookies.txt','wb') as f:
+  pickle.dump({'cookies':s.cookies,'uid':uid}, f)
