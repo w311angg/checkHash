@@ -113,4 +113,4 @@ if check() and num<2:
   print('邮件已发送')
 
 with open('cookies.txt','wb') as f:
-  pickle.dump({'cookies':s.cookies,'uid':uid}, f)
+  pickle.dump({'cookies':session.cookies,'uid':uid}, f)
