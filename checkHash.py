@@ -29,7 +29,7 @@ on=os.getenv('on')
 if on=='schedule':
   time.sleep(wait*60)
 uid=0
-print(session.cookies)
+print(session.cookies,session.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).json())
 @retry(stop=stop_after_attempt(10))
 def login():
   global h,uid
