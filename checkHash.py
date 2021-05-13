@@ -28,8 +28,8 @@ on=os.getenv('on')
 #print(on)
 if on=='schedule':
   time.sleep(wait*60)
-@retry(stop=stop_after_attempt(10))
 uid=0
+@retry(stop=stop_after_attempt(10))
 def login():
   global h,uid
   h=session.post('http://app.behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
