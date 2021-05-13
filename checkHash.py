@@ -14,11 +14,12 @@ session.headers.update({'user-agent':'Dalvik/2.1.0 (Linux; U; Android 10; ONEPLU
 try:
   with open('cookies.txt','rb') as f:
     dict=pickle.load(f)
-    print(dict)
+    #print(dict)
     session.cookies.update(dict['cookies'])
     uid=dict['uid']
 except FileNotFoundError:
   uid=0
+  first=True
   print('FileNotFoundError')
 #print(session.get('https://www.google.com/').text)
 num=0
@@ -30,14 +31,14 @@ on=os.getenv('on')
 #print(on)
 if on=='schedule':
   time.sleep(wait*60)
-print(session.cookies,session.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).cookies,session.cookies)
+#print(session.cookies,session.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).cookies,session.cookies)
 @retry(stop=stop_after_attempt(10))
 def login():
   global h,uid
   h=session.post('http://app.behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
   uid=h.json()['data']['uid']
   print('已登录')
-if session.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).json()['code']==400:
+if first or session.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).json()['code']==400:
   login()
 #print(h.text,h.cookies)
 a='number=2&uid=%s&card=1060'%(uid)
