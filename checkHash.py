@@ -29,11 +29,11 @@ on=os.getenv('on')
 if on=='schedule':
   time.sleep(wait*60)
 @retry(stop=stop_after_attempt(10))
+uid=0
 def login():
   global h,uid
   h=session.post('http://app.behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
   uid=h.json()['data']['uid']
-uid=0
 if session.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).json()['code']==400:
   login()
 #print(h.text)
