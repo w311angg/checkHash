@@ -19,7 +19,6 @@ try:
     session.cookies.update(dict['cookies'])
     uid=dict['uid']
 except FileNotFoundError:
-  uid=0
   first=True
   print('FileNotFoundError')
 #print(session.get('https://www.google.com/').text)
