@@ -58,6 +58,13 @@ jobs:
         systemctl status --no-pager shadowsocks
 #    - name: Setup tmate session
 #      uses: mxschmitt/action-tmate@v3
+    - name: Cache
+      uses: actions/cache@v2
+      with:
+        path: ./cookies.txt
+        key: build-${{ github.run_id }}
+        restore-keys: |
+          build-
     - name: Run
       env:
         on: ${{ github.event_name }}
