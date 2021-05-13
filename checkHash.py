@@ -18,6 +18,7 @@ try:
     session.cookies.update(dict['cookies'])
     uid=dict['uid']
 except FileNotFoundError:
+  uid=0
   print('FileNotFoundError')
 #print(session.get('https://www.google.com/').text)
 num=0
@@ -29,7 +30,6 @@ on=os.getenv('on')
 #print(on)
 if on=='schedule':
   time.sleep(wait*60)
-uid=0
 print(session.cookies,session.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).cookies,session.cookies)
 @retry(stop=stop_after_attempt(10))
 def login():
