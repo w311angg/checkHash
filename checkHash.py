@@ -36,7 +36,7 @@ def login():
   uid=h.json()['data']['uid']
 if session.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).json()['code']==400:
   login()
-print(h.text)
+print(h.text,h.cookies)
 a='number=2&uid=%s&card=1060'%(uid)
 #print(session.post('http://app.behash.com/api/v2/CalByCard',data=a).text)
 目标=session.post('http://app.behash.com/api/v2/CalByCard',data=a).json()['data']['incomeNum']
