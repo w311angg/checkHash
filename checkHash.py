@@ -17,7 +17,6 @@ try:
     session.cookies.update(dict['cookies'])
     uid=dict['uid']
 except FileNotFoundError:
-  first=True
   print('FileNotFoundError')
 #print(session.get('https://www.google.com/').text)
 num=0
@@ -34,7 +33,8 @@ def login():
   global h,uid
   h=session.post('http://app.behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
   uid=h.json()['data']['uid']
-if session.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).json()['code']==400 or first:
+uid=0
+if session.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).json()['code']==400:
   login()
 #print(h.text)
 a='number=2&uid=%s&card=1060'%(uid)
