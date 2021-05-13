@@ -13,6 +13,7 @@ session.proxies.update(proxies)
 session.headers.update({'user-agent':'Dalvik/2.1.0 (Linux; U; Android 10; ONEPLUS A3010 Build/QQ3A.200805.001)'})
 try:
   with open('cookies.txt','rb') as f:
+    first=False
     dict=pickle.load(f)
     #print(dict)
     session.cookies.update(dict['cookies'])
