@@ -34,7 +34,7 @@ def login():
   global h,uid
   h=session.post('http://app.behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
   uid=h.json()['data']['uid']
-if s.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).json()['code']==400 or first:
+if session.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).json()['code']==400 or first:
   login()
 #print(h.text)
 a='number=2&uid=%s&card=1060'%(uid)
