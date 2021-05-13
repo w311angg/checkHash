@@ -29,6 +29,7 @@ on=os.getenv('on')
 if on=='schedule':
   time.sleep(wait*60)
 uid=0
+print(session.cookies)
 @retry(stop=stop_after_attempt(10))
 def login():
   global h,uid
