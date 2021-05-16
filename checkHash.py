@@ -38,6 +38,7 @@ def login():
   h=session.post('http://app.behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
   uid=h.json()['data']['uid']
   print('已登录')
+print(session.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).text)
 if first or session.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).json()['code']==400:
   login()
 #print(h.text,h.cookies)
