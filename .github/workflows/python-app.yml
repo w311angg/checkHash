@@ -18,7 +18,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    if: github.event.sender.id == 'w311ang'
+    #if: github.event.sender.id == 'w311ang'
     env:
       v: ${{ github.event.sender.id }}
     environment: Production
