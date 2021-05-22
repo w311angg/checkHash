@@ -18,7 +18,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    if: "w311ang" == github.event.sender.id
+    if: w311ang == github.event.sender.id
     environment: Production
 
     steps:
