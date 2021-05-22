@@ -11,7 +11,7 @@ on:
   watch:
     types: started
   schedule:
-    - cron: '15 * * * *'
+    - cron: '15 3-23 * * *'
   workflow_dispatch:
 
 jobs:
@@ -32,23 +32,6 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: 3.9
-    - name: Exclude time
-      id: exclude-time
-#      if: github.event_name == 'schedule'
-      env:
-        start: 0:00
-        end: 3:00
-      run: |
-        python -u -c '\
-        import datetime
-        # 范围时间
-        d_time = datetime.datetime.strptime(str(datetime.datetime.now().date())+'${{ env.start }}', '%Y-%m-%d%H:%M')
-        d_time1 =  datetime.datetime.strptime(str(datetime.datetime.now().date())+'${{ env.end }}', '%Y-%m-%d%H:%M')
-        # 当前时间
-        n_time = datetime.datetime.now()
-        # 判断当前时间是否在范围时间内
-        if n_time > d_time and n_time<d_time1:
-          print('::set-output name=exclude::true')'
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
@@ -85,7 +68,6 @@ jobs:
         restore-keys: |
           build-
     - name: Run
-      if: steps.exclude-time.outputs.exclude != true
       env:
         on: ${{ github.event_name }}
         pass: ${{ secrets.pass }}
