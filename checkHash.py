@@ -96,7 +96,7 @@ def check():
       return True
     return False
 
-if (check() and (not num%2)) or num<2:
+if check() and ((not num%2) or num<2)):
   import smtplib
   from email.mime.text import MIMEText
   from email.utils import formataddr
