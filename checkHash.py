@@ -80,7 +80,7 @@ def check():
       print(发送主题)
       print('已连续'+str(num)+'次未达标')
       return True
-    发送主题='哈希宝已连续%s次挖矿不达标'%num
+    发送主题='已连续%s次不达标'%num
     print(发送主题)
     print('已连续'+str(num)+'次未达标')
     return True
