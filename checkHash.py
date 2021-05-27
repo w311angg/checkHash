@@ -70,21 +70,26 @@ print(发送内容)
 
 def check():
   global 发送主题,g,num
-  if 实际<目标 or 在线<2:
+  if 实际<目标:
+    num+=1
     if 实际<目标1:
       发送主题='⚠单台电脑哈希宝挖矿不达标'
       g=str(round(实际-目标1,2))
       print(发送主题)
-      num+=1
       with open('num.txt',mode='w') as f:
         f.write(str(num))
       print('已连续'+str(num)+'次未达标')
       return True
-    发送主题='哈希宝挖矿不达标'
-    print(发送主题)
-    print('已连续'+str(num)+'次未达标')
-    #return True
-    return False
+    elif not num%5:
+      发送主题='哈希宝已连续%s次挖矿不达标'%num
+      print(发送主题)
+      with open('num.txt',mode='w') as f:
+        f.write(str(num))
+      print('已连续'+str(num)+'次未达标')
+      return True
+      #return False
+    with open('num.txt',mode='w') as f:
+      f.write(str(num))
   else:
     print('挖矿达标')
     if num!=0:
