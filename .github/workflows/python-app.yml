@@ -18,7 +18,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    if: github.event.sender.id == '30381083'
+    #if: github.event.sender.id == '30381083'
     environment: Production
 
     steps:
