@@ -8,8 +8,8 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  watch:
-    types: started
+  #watch:
+  #  types: started
   schedule:
     - cron: '15 3-23 * * *'
   workflow_dispatch:
