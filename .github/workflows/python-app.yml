@@ -73,8 +73,13 @@ jobs:
         password: ${{ secrets.password }}
         sender: ${{ secrets.sender }}
         to: ${{ secrets.to }}
-      run: |
-        proxychains python -u checkHash.py
+      uses: nick-invision/retry@v2
+      with:
+        timeout_minutes: 10
+        max_attempts: 3
+        command: |
+          proxychains python -u checkHash.py
+        on_retry_command: sudo systemctl restart shadowsocks
     - name: Commit files
       run: |
         git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
