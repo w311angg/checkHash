@@ -76,7 +76,7 @@ jobs:
       uses: nick-invision/retry@v2
       with:
         timeout_minutes: 10
-        max_attempts: 3
+        max_attempts: 5
         command: |
           proxychains python -u checkHash.py
         on_retry_command: sudo systemctl restart shadowsocks
