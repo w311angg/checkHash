@@ -11,7 +11,7 @@ on:
   #watch:
   #  types: started
   schedule:
-    - cron: '15 3-23 * * *'
+    - cron: '15 19-15 * * *'
   workflow_dispatch:
 
 jobs:
