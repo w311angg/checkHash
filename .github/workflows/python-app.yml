@@ -68,11 +68,11 @@ jobs:
     - name: Run
       env:
         on: ${{ github.event_name }}
-        pass: ${{ secrets.pass }}
+        pass: ${{ secrets.mail_password }}
         account: ${{ secrets.account }}
         password: ${{ secrets.password }}
-        sender: ${{ secrets.sender }}
-        to: ${{ secrets.to }}
+        sender: ${{ secrets.mail_account }}
+        to: ${{ secrets.mail_account }}
       uses: nick-invision/retry@v2
       with:
         timeout_minutes: 10
