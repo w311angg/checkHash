@@ -63,7 +63,7 @@ if 在线!=0:
   c=list(session.post('http://app.behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json()['data'][0].items())
   for i in c:
     d=list(i)
-    在线情况+=d[0]+' '+d[1]+'\n'
+    在线情况+=d[0]+' '+d[1]
 g=str(round(实际-目标,2))
 host=os.getenv('host')
 pas(host,os.getenv('pw'))
@@ -74,8 +74,8 @@ brohash=requests.get(url+'brohash.php').text
 基准速度 %sM
 %s
 ------
-me %s
-bro %s
+我的电脑 %s
+弟弟的电脑 %s
 """%(目标,实际,g,在线,速度1,在线情况,myhash,brohash)
 print(发送内容)
 发送主题=''
