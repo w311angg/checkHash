@@ -4,7 +4,7 @@ import random
 import time
 import pickle
 from tenacity import retry, stop_after_attempt
-import pas
+from pas import pas
 proxies = {
     'http': 'socks5://localhost:1080',
     'https': 'socks5://localhost:1080'
