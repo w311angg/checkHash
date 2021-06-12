@@ -109,12 +109,12 @@ def check():
     return False
 
 if check() and ((not num%2) or num<2):
-  if myhash=='None':
-    mystat=requests.get(url+'myhash.php?restart')
-    print(mystat.text)
-  if brohash=='None':
-    brostat=requests.get(url+'brohash.php?restart')
-    print(brostat.text)
+  #if myhash=='None':
+  #  mystat=requests.get(url+'myhash.php?restart')
+  #  print(mystat.text)
+  #if brohash=='None':
+  #  brostat=requests.get(url+'brohash.php?restart')
+  #  print(brostat.text)
 
   import smtplib
   from email.mime.text import MIMEText
