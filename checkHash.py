@@ -4,6 +4,7 @@ import random
 import time
 import pickle
 from tenacity import retry, stop_after_attempt
+import pas
 proxies = {
     'http': 'socks5://localhost:1080',
     'https': 'socks5://localhost:1080'
@@ -64,7 +65,17 @@ if 在线!=0:
     d=list(i)
     在线情况+=d[0]+' '+d[1]+'\n'
 g=str(round(实际-目标,2))
-发送内容='应挖'+str(目标)+'，实挖'+str(实际)+'('+g+')'+'，在线'+str(在线)+'\n'+'基准速度 '+速度1+'M\n'+在线情况
+pas(os.getenv('host'),os.getenv('pw'))
+url='http://'+host+'/'
+myhash=requests.get(url+'myhash.php').text
+brohash=requests.get(url+'brohash.php').text
+发送内容="""应挖%s，实挖%s(%s)，在线%s
+基准速度 %sM
+%s
+------
+me %s
+bro %s
+"""%(目标,实际,g,在线,速度1,在线情况,myhash,brohash)
 print(发送内容)
 发送主题=''
 
@@ -97,6 +108,13 @@ def check():
     return False
 
 if check() and ((not num%2) or num<2):
+  if myhash=='None':
+    mystat=requests.get(url+'myhash.php?restart')
+    print(mystat.text)
+  if brohash=='None':
+    brostat=requests.get(url+'brohash.php?restart')
+    print(brostat.text)
+
   import smtplib
   from email.mime.text import MIMEText
   from email.utils import formataddr
