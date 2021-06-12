@@ -65,7 +65,8 @@ if 在线!=0:
     d=list(i)
     在线情况+=d[0]+' '+d[1]+'\n'
 g=str(round(实际-目标,2))
-pas(os.getenv('host'),os.getenv('pw'))
+host=os.getenv('host')
+pas(host,os.getenv('pw'))
 url='http://'+host+'/'
 myhash=requests.get(url+'myhash.php').text
 brohash=requests.get(url+'brohash.php').text
