@@ -108,7 +108,7 @@ def check():
       return True
     return False
 
-if check() and ((not num%2) or num<2):
+if check() and (not num%2):
   #if myhash=='None':
   #  mystat=requests.get(url+'myhash.php?restart')
   #  print(mystat.text)
