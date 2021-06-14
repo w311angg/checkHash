@@ -62,7 +62,9 @@ jobs:
     - name: Cache
       uses: actions/cache@v2
       with:
-        path: ./cookies.txt
+        path: |
+          ./cookies.txt
+          ./num.txt
         key: build-${{ github.run_id }}
         restore-keys: |
           build-
@@ -83,14 +85,3 @@ jobs:
         command: |
           proxychains python -u checkHash.py
         on_retry_command: sudo systemctl restart shadowsocks
-    - name: Commit files
-      run: |
-        git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
-        git config --local user.name "github-actions[bot]"
-        git add num.txt
-        git diff-index --quiet HEAD || git commit -m "Add changes" -a
-    - name: Push changes
-      uses: ad-m/github-push-action@master
-      with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ github.ref }}
