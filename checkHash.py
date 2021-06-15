@@ -139,7 +139,7 @@ if check() and (not num%2):
 today=time.strftime("%d", time.localtime())
 #if today=='19' and (not rewarded):
 if True:
-  account=os.getenv('accountt')
+  account=os.getenv('raccount')
   num=session.post('http://app.behash.com/api/v2/center',data={'uid':uid}).json()['data']['reward']
   num=0.01
   reward=session.post('http://app.behash.com/api/v2/withdrawing',data={'symbol':'reward','uid':uid,'num':num,'type':1,'account':account}).json()
