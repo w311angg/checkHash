@@ -136,5 +136,16 @@ if check() and (not num%2):
   mail()
   print('邮件已发送')
 
+today=time.strftime("%d", time.localtime())
+if today=='19' and (not rewarded):
+  account=os.getenv('account')
+  num=session.post('http://app.behash.com/api/v2/center',data={'uid':uid}).json()['data']['reward']
+  num=0.01
+  reward=session.post('http://app.behash.com/api/v2/withdrawing',data={'symbol':'reward','uid':uid,'num':num,'type':1,'account':account}).json()
+  print(reward['msg'])
+  rewarded=True
+elif today='20':
+  rewarded=False
+
 with open('cookies.txt','wb') as f:
-  pickle.dump({'cookies':session.cookies,'uid':uid}, f)
+  pickle.dump({'cookies':session.cookies,'uid':uid,'rewarded':rewarded}, f)
