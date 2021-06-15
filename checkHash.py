@@ -101,7 +101,7 @@ def check():
     #return False
   else:
     print('挖矿达标')
-    if num!=0:
+    if num!=0 and (not num%2):
       发送主题='哈希宝挖矿已达标'
       print(发送主题)
       num=0
