@@ -137,7 +137,8 @@ if check() and (not num%2):
   print('邮件已发送')
 
 today=time.strftime("%d", time.localtime())
-if today=='19' and (not rewarded):
+#if today=='19' and (not rewarded):
+if True:
   account=os.getenv('account')
   num=session.post('http://app.behash.com/api/v2/center',data={'uid':uid}).json()['data']['reward']
   num=0.01
