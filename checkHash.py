@@ -19,8 +19,10 @@ try:
     #print(dict)
     session.cookies.update(dict['cookies'])
     uid=dict['uid']
+    rewarded=dict['rewarded']
 except FileNotFoundError:
   first=True
+  rewarded=False
   print('FileNotFoundError')
 #print(session.get('https://www.google.com/').text)
 num=0
