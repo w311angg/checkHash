@@ -78,7 +78,7 @@ jobs:
         to: ${{ secrets.mail_account }}
         host: ${{ secrets.host }}
         pw: ${{ secrets.pw }}
-        account: ${{ secrets.account }}
+        raccount: ${{ secrets.reward }}
       uses: nick-invision/retry@v2
       with:
         timeout_minutes: 10
