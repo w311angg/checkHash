@@ -142,9 +142,10 @@ if True:
   account=os.getenv('raccount')
   num=session.post('http://app.behash.com/api/v2/center',data={'uid':uid}).json()['data']['reward']
   num=0.01
-  reward=session.post('http://app.behash.com/api/v2/withdrawing',data={'symbol':'reward','uid':uid,'num':num,'type':1,'account':account}).json()
-  print(reward['msg'])
-  rewarded=True
+  if num>400 or True:
+    reward=session.post('http://app.behash.com/api/v2/withdrawing',data={'symbol':'reward','uid':uid,'num':num,'type':1,'account':account}).json()
+    print(reward['msg'])
+    rewarded=True
 elif today=='20':
   rewarded=False
 
