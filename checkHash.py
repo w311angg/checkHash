@@ -144,6 +144,7 @@ if today=='19' and (not rewarded):
 #if True:
   account=os.getenv('raccount')
   num=session.post('http://app.behash.com/api/v2/center',data={'uid':uid}).json()['data']['reward']
+  num=int(num)
   #num=0.01
   #print(num)
   if num>100:
