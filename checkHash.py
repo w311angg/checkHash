@@ -149,7 +149,7 @@ if today=='19' and (not rewarded):
     reward=session.post('http://app.behash.com/api/v2/withdrawing',data={'symbol':'reward','uid':uid,'num':num,'type':1,'account':account}).json()
     print(reward['msg'])
     rewarded=True
-elif today!='19':
+if today!='19':
   rewarded=False
 
 with open('cookies.txt','wb') as f:
