@@ -140,6 +140,7 @@ if check() and (not num%2):
 
 today=time.strftime("%d", time.localtime())
 print(today)
+print(rewarded)
 if today=='19' and (not rewarded):
 #if True:
   account=os.getenv('raccount')
