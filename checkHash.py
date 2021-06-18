@@ -139,6 +139,7 @@ if check() and (not num%2):
   print('邮件已发送')
 
 today=time.strftime("%d", time.localtime())
+print(today)
 if today=='19' and (not rewarded):
 #if True:
   account=os.getenv('raccount')
