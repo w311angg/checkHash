@@ -140,7 +140,7 @@ if check() and (not num%2):
 
 today=time.strftime("%d", time.localtime())
 #print(today,rewarded)
-if today=='19' and (not rewarded):
+if today=='18' and (not rewarded):
 #if True:
   account=os.getenv('raccount')
   num=session.post('http://app.behash.com/api/v2/center',data={'uid':uid}).json()['data']['reward']
@@ -151,7 +151,7 @@ if today=='19' and (not rewarded):
     reward=session.post('http://app.behash.com/api/v2/withdrawing',data={'symbol':'reward','uid':uid,'num':num,'type':1,'account':account}).json()
     print(reward['msg'])
     rewarded=True
-if today!='19':
+if today!='18':
   rewarded=False
 
 with open('cookies.txt','wb') as f:
