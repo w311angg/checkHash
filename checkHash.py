@@ -6,7 +6,10 @@ import pickle
 from tenacity import retry, stop_after_attempt
 from pas import pas
 
-#print(requests.get('https://www.google.com/'))
+try:
+  print(requests.get('https://www.google.com/'))
+except:
+  pass
 
 proxies = {
     'http': 'socks5://localhost:1080',
