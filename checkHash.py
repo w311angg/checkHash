@@ -95,7 +95,7 @@ def check():
     with open('num.txt',mode='w') as f:
       f.write(str(num))
     if 实际<目标1:
-      发送主题='⚠单台电脑哈希宝挖矿不达标'
+      发送主题='⚠单台电脑哈希宝不达标'
       g=str(round(实际-目标1,2))
       print(发送主题)
       print('已连续'+str(num)+'次未达标')
@@ -108,7 +108,7 @@ def check():
   else:
     print('挖矿达标')
     if num!=0 and (not num%2):
-      发送主题='哈希宝挖矿已达标'
+      发送主题='哈希宝已达标'
       print(发送主题)
       num=0
       with open('num.txt',mode='w') as f:
