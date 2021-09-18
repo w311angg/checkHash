@@ -69,10 +69,9 @@ b=session.post('http://app.hxbao.com/api/v2/workdata',data='uid=9891',cookies={'
 #在线=0
 if 在线!=0:
   #print(session.post('http://app.hxbao.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json())
-  c=list(session.post('http://app.hxbao.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json()['data']['online_gpu'].items())
+  c=session.post('http://app.hxbao.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json()['data']['Machine']
   for i in c:
-    d=list(i)
-    在线情况+=d[0]+' '+d[1]
+    在线情况+=i['remark']+' '+i['speed_24h']
 g=str(round(实际-目标,2))
 host=os.getenv('host')
 pas(host,os.getenv('pw'))
