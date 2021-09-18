@@ -62,7 +62,7 @@ f=session.post('http://app.hxbao.com/api/v2/CalByCard',data=e,headers={'Content-
 phps=session.cookies.get('PHPSESSID',domain='app.hxbao.com')
 b=session.post('http://app.hxbao.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':phps}).json()
 #print(b)
-实际=b['data']['rate']
+实际=b['data']['rate'][0]
 在线=b['data']['online']
 #实际=0
 在线情况=''
