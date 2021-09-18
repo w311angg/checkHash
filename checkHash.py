@@ -53,8 +53,8 @@ if first or session.post('http://app.hxbao.com/api/v2/workdata',data={'uid':uid}
 #print(h.text,h.cookies)
 a='number=2&uid=%s&card=1060'%(uid)
 #print(session.post('http://app.hxbao.com/api/v2/CalByCard',data=a).text)
-print(session.post('http://app.hxbao.com/api/v2/CalByCard',data=a).json()['data'])
-目标=session.post('http://app.hxbao.com/api/v2/CalByCard',data=a).json()['data']['incomeNum']
+#print(session.post('http://app.hxbao.com/api/v2/CalByCard',data=a).json()['data'])
+目标=session.post('http://app.hxbao.com/api/v2/CalByCard',data=a,headers={'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'}).json()['data']['incomeNum']
 e='number=1&uid=%s&card=1060'%(uid)
 f=session.post('http://app.hxbao.com/api/v2/CalByCard',data=e).json()['data']
 目标1=f['incomeNum']
