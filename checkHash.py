@@ -40,26 +40,26 @@ on=os.getenv('on')
 #print(on)
 if on=='schedule':
   time.sleep(wait*60)
-#print(session.cookies,session.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).cookies,session.cookies)
+#print(session.cookies,session.post('http://app.hxbao.com/api/v2/workdata',data={'uid':uid}).cookies,session.cookies)
 @retry(stop=stop_after_attempt(10))
 def login():
   global h,uid
-  h=session.post('http://app.behash.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
+  h=session.post('http://app.hxbao.com/api/v2/login',data={'password':os.getenv('password'),'account':os.getenv('account')})
   uid=h.json()['data']['uid']
   print('已登录')
-#print(session.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).text)
-if first or session.post('http://app.behash.com/api/v2/workdata',data={'uid':uid}).json()['code']==400:
+#print(session.post('http://app.hxbao.com/api/v2/workdata',data={'uid':uid}).text)
+if first or session.post('http://app.hxbao.com/api/v2/workdata',data={'uid':uid}).json()['code']==400:
   login()
 #print(h.text,h.cookies)
 a='number=2&uid=%s&card=1060'%(uid)
-#print(session.post('http://app.behash.com/api/v2/CalByCard',data=a).text)
-目标=session.post('http://app.behash.com/api/v2/CalByCard',data=a).json()['data']['incomeNum']
+#print(session.post('http://app.hxbao.com/api/v2/CalByCard',data=a).text)
+目标=session.post('http://app.hxbao.com/api/v2/CalByCard',data=a).json()['data']['incomeNum']
 e='number=1&uid=%s&card=1060'%(uid)
-f=session.post('http://app.behash.com/api/v2/CalByCard',data=e).json()['data']
+f=session.post('http://app.hxbao.com/api/v2/CalByCard',data=e).json()['data']
 目标1=f['incomeNum']
 速度1=f['speed']
 phps=session.cookies['PHPSESSID']
-b=session.post('http://app.behash.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':phps}).json()
+b=session.post('http://app.hxbao.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':phps}).json()
 #print(b)
 实际=b['data']['rate']
 在线=b['data']['online']
@@ -67,8 +67,8 @@ b=session.post('http://app.behash.com/api/v2/workdata',data='uid=9891',cookies={
 在线情况=''
 #在线=0
 if 在线!=0:
-  #print(session.post('http://app.behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json())
-  c=list(session.post('http://app.behash.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json()['data'][0].items())
+  #print(session.post('http://app.hxbao.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json())
+  c=list(session.post('http://app.hxbao.com/api/v2/terminal',data='uid=9891',cookies={'PHPSESSID':phps}).json()['data'][0].items())
   for i in c:
     d=list(i)
     在线情况+=d[0]+' '+d[1]
@@ -149,12 +149,12 @@ today=time.strftime("%d", time.localtime())
 if today=='19' and (not rewarded):
 #if True:
   account=os.getenv('raccount')
-  num=session.post('http://app.behash.com/api/v2/center',data={'uid':uid}).json()['data']['reward']
+  num=session.post('http://app.hxbao.com/api/v2/center',data={'uid':uid}).json()['data']['reward']
   num=float(num)
   #num=0.01
   #print(num)
   if num>100:
-    reward=session.post('http://app.behash.com/api/v2/withdrawing',data={'symbol':'reward','uid':uid,'num':num,'type':1,'account':account}).json()
+    reward=session.post('http://app.hxbao.com/api/v2/withdrawing',data={'symbol':'reward','uid':uid,'num':num,'type':1,'account':account}).json()
     print(reward['msg'])
     rewarded=True
 if today!='19':
