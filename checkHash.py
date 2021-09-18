@@ -56,7 +56,7 @@ a='number=2&uid=%s&card=1060'%(uid)
 #print(session.post('http://app.hxbao.com/api/v2/CalByCard',data=a).json()['data'])
 目标=session.post('http://app.hxbao.com/api/v2/CalByCard',data=a,headers={'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'}).json()['data']['incomeNum']
 e='number=1&uid=%s&card=1060'%(uid)
-f=session.post('http://app.hxbao.com/api/v2/CalByCard',data=e).json()['data']
+f=session.post('http://app.hxbao.com/api/v2/CalByCard',data=e,headers={'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'}).json()['data']
 目标1=f['incomeNum']
 速度1=f['speed']
 phps=session.cookies['PHPSESSID']
