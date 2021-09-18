@@ -17,7 +17,7 @@ proxies = {
 }
 session = requests.Session()
 #session.proxies.update(proxies)
-session.headers.update({'user-agent':'Dalvik/2.1.0 (Linux; U; Android 10; ONEPLUS A3010 Build/QQ3A.200805.001)'})
+session.headers.update({'user-agent':'Dalvik/2.1.0 (Linux; U; Android 10; ONEPLUS A3010 Build/QQ3A.200805.001)','Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'})
 try:
   with open('cookies.txt','rb') as f:
     first=False
