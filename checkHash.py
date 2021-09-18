@@ -59,7 +59,7 @@ e='number=1&uid=%s&card=1060'%(uid)
 f=session.post('http://app.hxbao.com/api/v2/CalByCard',data=e,headers={'Content-Type':'application/x-www-form-urlencoded;charset=UTF-8'}).json()['data']
 目标1=f['incomeNum']
 速度1=f['speed']
-phps=session.cookies.get('PHPSESSID')
+phps=session.cookies.get('PHPSESSID',domain='')
 b=session.post('http://app.hxbao.com/api/v2/workdata',data='uid=9891',cookies={'PHPSESSID':phps}).json()
 #print(b)
 实际=b['data']['rate']
