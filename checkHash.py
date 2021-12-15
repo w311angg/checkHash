@@ -5,6 +5,7 @@ import time
 import pickle
 from tenacity import retry, stop_after_attempt
 from pas import pas
+from pytools.pytools import pas
 
 try:
   print(requests.get('https://www.google.com/'))
