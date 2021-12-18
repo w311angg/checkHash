@@ -90,7 +90,7 @@ print(发送内容)
 
 def check():
   global 发送主题,g,num
-  if 实际<目标:
+  if 实际<目标-100:
     num+=1
     with open('num.txt',mode='w') as f:
       f.write(str(num))
