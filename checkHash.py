@@ -121,6 +121,7 @@ def check():
 
 today=time.strftime("%d", time.localtime())
 def newday():
+  global today
   return False if today==thatday else True
 
 if check():
