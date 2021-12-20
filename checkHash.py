@@ -26,6 +26,7 @@ try:
     session.cookies.update(dict['cookies'])
     uid=dict['uid']
     rewarded=dict['rewarded']
+    thatday=dict['thatday']
 except FileNotFoundError:
   first=True
   rewarded=False
@@ -90,6 +91,8 @@ print(发送内容)
 
 def check():
   global 发送主题,g,num
+  if newday():
+    num=0
   if 实际<目标:
     num+=1
     with open('num.txt',mode='w') as f:
@@ -115,6 +118,10 @@ def check():
         f.write(str(num))
       return True
     return False
+
+today=time.strftime("%d", time.localtime())
+def newday():
+  return False if today==thatday else True
 
 if check():
   #if myhash=='None':
@@ -144,7 +151,6 @@ if check():
   mail()
   print('邮件已发送')
 
-today=time.strftime("%d", time.localtime())
 #print(today,rewarded)
 if today=='19' and (not rewarded):
 #if True:
@@ -161,4 +167,4 @@ if today!='19':
   rewarded=False
 
 with open('cookies.txt','wb') as f:
-  pickle.dump({'cookies':session.cookies,'uid':uid,'rewarded':rewarded}, f)
+  pickle.dump({'cookies':session.cookies,'uid':uid,'rewarded':rewarded,'thatday':today}, f)
