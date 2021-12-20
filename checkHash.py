@@ -26,6 +26,7 @@ try:
     session.cookies.update(dict['cookies'])
     uid=dict['uid']
     rewarded=dict['rewarded']
+    today=time.strftime("%d", time.localtime())
     thatday=dict['thatday'] if 'thatday' in dict else today
 except FileNotFoundError:
   first=True
@@ -119,7 +120,6 @@ def check():
       return True
     return False
 
-today=time.strftime("%d", time.localtime())
 def newday():
   global today, thatday
   return False if today==thatday else True
