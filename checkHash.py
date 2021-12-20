@@ -118,7 +118,7 @@ def check():
       with open('num.txt',mode='w') as f:
         f.write(str(num))
       return True
-    return False
+    return True
 
 def newday():
   global today, thatday
