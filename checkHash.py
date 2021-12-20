@@ -26,7 +26,7 @@ try:
     session.cookies.update(dict['cookies'])
     uid=dict['uid']
     rewarded=dict['rewarded']
-    thatday=dict['thatday']
+    thatday=dict['thatday'] if 'thatday' in dict else today
 except FileNotFoundError:
   first=True
   rewarded=False
