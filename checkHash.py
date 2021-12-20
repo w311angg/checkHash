@@ -90,7 +90,7 @@ print(发送内容)
 
 def check():
   global 发送主题,g,num
-  if 实际<目标-100:
+  if 实际<目标:
     num+=1
     with open('num.txt',mode='w') as f:
       f.write(str(num))
@@ -107,7 +107,7 @@ def check():
     #return False
   else:
     print('挖矿达标')
-    if num!=0 and (not num%2):
+    if num!=0:
       发送主题='哈希宝已达标'
       print(发送主题)
       num=0
@@ -116,7 +116,7 @@ def check():
       return True
     return False
 
-if check() and (not num%2):
+if check():
   #if myhash=='None':
   #  mystat=requests.get(url+'myhash.php?restart')
   #  print(mystat.text)
