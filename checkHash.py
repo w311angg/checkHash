@@ -118,6 +118,7 @@ def check():
       with open('num.txt',mode='w') as f:
         f.write(str(num))
       return True
+    发送主题='哈希宝达标'
     return True
 
 def newday():
