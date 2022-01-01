@@ -5,6 +5,7 @@ import time
 import pickle
 from tenacity import retry, stop_after_attempt
 from pytools.pytools import pas
+from pytools.pytools import bypassCC
 
 try:
   print(requests.get('https://www.google.com/'))
@@ -78,8 +79,8 @@ g=str(round(实际-目标,2))
 host=os.getenv('host')
 pas(host,os.getenv('pw'))
 url='http://'+host+'/'
-myhash=requests.get(url+'myhash.php').text
-brohash=requests.get(url+'brohash.php').text
+myhash=session.get(url+'myhash.php').text
+brohash=session.get(url+'brohash.php').text
 发送内容="""应挖%s，实挖%s(%s)，在线%s
 基准速度 %sM
 %s
