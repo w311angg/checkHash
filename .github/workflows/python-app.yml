@@ -50,6 +50,7 @@ jobs:
         path: |
           ./cookies.txt
           ./num.txt
+          ./isnewday.txt
         key: build-${{ github.run_id }}
         restore-keys: |
           build-
@@ -69,5 +70,5 @@ jobs:
         timeout_minutes: 10
         max_attempts: 5
         command: |
-          proxychains python -u checkHash.py
+          proxychains python -u ckhash.py
         on_retry_command: sudo systemctl restart shadowsocks
