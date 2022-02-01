@@ -2,12 +2,17 @@ import requests
 from pytools.pytools import jmail
 from pytools.pytools import isnewday
 
+current=20
+
 s=requests.Session()
-try:
-  with open('num.txt') as f:
-    number=int(f.read())
-except FileNotFoundError:
+if isnewday():
   number=0
+else:
+  try:
+    with open('num.txt') as f:
+      number=int(f.read())
+  except FileNotFoundError:
+    number=0
 
 def hash(url):
   with s.get(url) as resp:
@@ -30,7 +35,6 @@ bropc=bropcHash()[0]
 mypctext=mypcHash()[1]
 bropctext=bropcHash()[1]
 def check():
-  current=20
   if mypc<current or bropc<current:
     return 1 #单台不达标
   elif mypc+bropc<current*2:
@@ -39,22 +43,24 @@ def check():
     return 0
 
 def sendemail(title):
-  global number
-  content='\n'.join((mypctext,bropctext))
-  number+=1
+  content="""\
+  基准速率 %s MH/s
+  我 %s
+  弟弟 %s"""%(current,mypctext,bropctext)
   print(title)
   print(content)
   jmail('checkHash',title,content)
 
 status=check()
 if status==1:
+  number+=1
   sendemail('哈希宝单台不达标')
 elif status==2:
+  number+=1
   sendemail('哈希宝不达标')
 elif status==0:
   number=0
-if isnewday():
-  number=0
+  sendemail('哈希宝达标')
 
 with open('num.txt','w') as f:
   f.write(str(number))
