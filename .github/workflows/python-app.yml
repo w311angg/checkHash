@@ -65,7 +65,7 @@ jobs:
         host: ${{ secrets.host }}
         pw: ${{ secrets.pw }}
         raccount: ${{ secrets.reward }}
-        key: ${{ secrets.JMAIL_PASSWORD }}
+        jmail: ${{ secrets.JMAIL_PASSWORD }}
       uses: nick-invision/retry@v2
       with:
         timeout_minutes: 10
