@@ -44,10 +44,10 @@ def check():
 
 def sendemail(title):
   content="""\
-  基准速率 %s MH/s
-  我 %s
-  弟弟 %s\
-  """%(current,mypctext,bropctext)
+基准速率 %s MH/s
+我 %s
+弟弟 %s\
+"""%(current,mypctext,bropctext)
   print(title)
   print(content)
   jmail('checkHash',title,content)
