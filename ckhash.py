@@ -31,7 +31,6 @@ mypctext=mypcHash()[1]
 bropctext=bropcHash()[1]
 def check():
   current=20
-  print(mypc,bropc)
   if mypc<current or bropc<current:
     return 1 #单台不达标
   elif mypc+bropc<current*2:
@@ -43,6 +42,8 @@ def sendemail(title):
   global number
   content='\n'.join((mypctext,bropctext))
   number+=1
+  print(title)
+  print(content)
   jmail('checkHash',title,content)
 
 status=check()
@@ -56,4 +57,4 @@ if isnewday():
   number=0
 
 with open('num.txt','w') as f:
-  f.write(number)
+  f.write(str(number))
