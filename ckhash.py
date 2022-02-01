@@ -35,7 +35,7 @@ bropc=bropcHash()[0]
 mypctext=mypcHash()[1]
 bropctext=bropcHash()[1]
 def check():
-  if mypc<current or bropc<current:
+  if mypc+bropc<current:
     return 1 #单台不达标
   elif mypc+bropc<current*2:
     return 2 #不达标
