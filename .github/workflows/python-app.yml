@@ -72,4 +72,4 @@ jobs:
         max_attempts: 5
         command: |
           proxychains python -u ckhash.py
-        on_retry_command: sudo systemctl restart shadowsocks
+        on_retry_command: sudo systemctl restart shadowsocks-libev-local@client
