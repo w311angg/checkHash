@@ -18,10 +18,11 @@ def hash(url):
   with s.get(url) as resp:
     text=resp.text
     data=text.split(', ')
-    if len(data)==1:
+    hash=data[2].replace(' MH/s','')
+    if (len(data)==1 or hash=='N/A'):
       return (0,text)
     else:
-      hash=float(data[2].replace(' MH/s',''))
+      hash=float(hash)
   return (hash,text)
 
 def mypcHash():
@@ -55,10 +56,10 @@ def sendemail(title):
 status=check()
 if status==1:
   number+=1
-  sendemail('哈希宝单台不达标')
+  sendemail('哈希宝单台不达标%s次'%number)
 elif status==2:
   number+=1
-  sendemail('哈希宝不达标')
+  sendemail('哈希宝不达标%s次'%number)
 elif status==0:
   number=0
   sendemail('哈希宝达标')
