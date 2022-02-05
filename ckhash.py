@@ -15,14 +15,18 @@ else:
     number=0
 
 def hash(url):
-  with s.get(url) as resp:
-    text=resp.text
-    data=text.split(', ')
-    hash=data[2].replace(' MH/s','')
-    if (len(data)==1 or hash=='N/A'):
-      return (0,text)
-    else:
-      hash=float(hash)
+  try:
+    with s.get(url) as resp:
+      text=resp.text
+      data=text.split(', ')
+      hash=data[2].replace(' MH/s','')
+      if (len(data)==1 or hash=='N/A'):
+        return (0,text)
+      else:
+        hash=float(hash)
+  except requests.exceptions.ConnectionError:
+    hash=0
+    text='ConnectionError'
   return (hash,text)
 
 def mypcHash():
