@@ -19,10 +19,10 @@ def hash(url):
     with s.get(url) as resp:
       text=resp.text
       data=text.split(', ')
-      hash=data[2].replace(' MH/s','')
       if (len(data)==1 or hash=='N/A'):
-        return (0,text)
+        hash=0
       else:
+        hash=data[2].replace(' MH/s','')
         hash=float(hash)
   except requests.exceptions.ConnectionError:
     hash=0
