@@ -19,7 +19,7 @@ def hash(url):
     with s.get(url) as resp:
       text=resp.text
       data=text.split(', ')
-      if len(data)==1:
+      if len(data)==1 or len(data)==2:
         hash=0
       else:
         hash=data[2].replace(' MH/s','')
