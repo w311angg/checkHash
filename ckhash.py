@@ -22,7 +22,7 @@ def hash(url):
       status=data[0]
       if len(data)==1 or len(data)==2:
         hash=0
-        specialexe=status
+        specialexe='pausing' if 'pausing' in status else status
       else:
         hash=data[2].replace(' MH/s','')
         if hash=='N/A':
