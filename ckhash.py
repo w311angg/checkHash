@@ -21,16 +21,19 @@ def hash(url):
       data=text.split(', ')
       if len(data)==1 or len(data)==2:
         hash=0
+        specialexe=''
       else:
         hash=data[2].replace(' MH/s','')
         if hash=='N/A':
           hash=0
         else:
           hash=float(hash)
+        specialexe=data[3]
   except requests.exceptions.ConnectionError:
     hash=0
     text='ConnectionError'
-  return (hash,text)
+    specialexe=''
+  return (hash,text,specialexe)
 
 def mypcHash():
   return hash('http://mypc.lan:1234')
@@ -38,10 +41,15 @@ def mypcHash():
 def bropcHash():
   return hash('http://bropc.lan:1234')
 
-mypc=mypcHash()[0]
-bropc=bropcHash()[0]
-mypctext=mypcHash()[1]
-bropctext=bropcHash()[1]
+mypchash=mypcHash()
+mypc=mypchash[0]
+mypctext=mypchash[1]
+
+bropchash=bropcHash()
+bropc=bropchash[0]
+bropctext=bropchash[1]
+bropcexe=bropchash[2]
+
 def check():
   if mypc+bropc<current:
     return 1 #单台不达标
@@ -63,10 +71,10 @@ def sendemail(title):
 status=check()
 if status==1:
   number+=1
-  sendemail('哈希宝单台不达标%s次'%number)
+  sendemail('哈希宝单台不达标%s次#%s'%(number,bropcexe))
 elif status==2:
   number+=1
-  sendemail('哈希宝不达标%s次'%number)
+  sendemail('哈希宝不达标%s次#%s'%(number,bropcexe))
 elif status==0:
   number=0
   sendemail('哈希宝达标')
