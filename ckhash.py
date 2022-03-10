@@ -19,9 +19,10 @@ def hash(url):
     with s.get(url) as resp:
       text=resp.text
       data=text.split(', ')
+      status=data[0]
       if len(data)==1 or len(data)==2:
         hash=0
-        specialexe=''
+        specialexe=status
       else:
         hash=data[2].replace(' MH/s','')
         if hash=='N/A':
@@ -32,7 +33,7 @@ def hash(url):
   except requests.exceptions.ConnectionError:
     hash=0
     text='ConnectionError'
-    specialexe=''
+    specialexe='连接出错'
   return (hash,text,specialexe)
 
 def mypcHash():
