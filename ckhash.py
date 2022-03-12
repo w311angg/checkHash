@@ -64,7 +64,7 @@ def sendemail(title):
 基准速率 %s MH/s<br>
 我 %s<br>
 弟弟 %s<br>
-<a href="http://pi.lan/checkhash.php">刷新</a>\
+<i><b><a href="http://pi.lan/checkhash.php">刷新</a></b></i>\
 """%(current,mypctext,bropctext)
   print(title)
   print(content)
