@@ -61,13 +61,14 @@ def check():
 
 def sendemail(title):
   content="""\
-基准速率 %s MH/s
-我 %s
-弟弟 %s\
+基准速率 %s MH/s<br>
+我 %s<br>
+弟弟 %s<br>
+<a href="http://pi.lan/checkhash.php">刷新</a>\
 """%(current,mypctext,bropctext)
   print(title)
   print(content)
-  jmail('checkHash',title,content)
+  jmail('checkHash',title,content,html=True)
 
 status=check()
 if status==1:
