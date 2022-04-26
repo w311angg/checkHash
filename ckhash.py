@@ -73,10 +73,10 @@ def sendemail(title):
 status=check()
 if status==1:
   number+=1
-  sendemail('哈希宝单台不达标%s次#%s'%(number,bropcexe))
+  sendemail('哈希宝单台不达标%s次#%s'%(number,bropcexe if bropc!=0 and mypc!=0 else '未运行!!'))
 elif status==2:
   number+=1
-  sendemail('哈希宝不达标%s次#%s'%(number,bropcexe))
+  sendemail('哈希宝不达标%s次#%s'%(number,bropcexe if bropc!=0 and mypc!=0 else '未运行!!'))
 elif status==0:
   number=0
   sendemail('哈希宝达标')
