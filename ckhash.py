@@ -27,6 +27,7 @@ def hash(url):
         hash=data[2].replace(' MH/s','')
         if hash=='N/A':
           hash=0
+          specialexe='未运行!!'
         else:
           hash=float(hash)
         specialexe=data[3]
@@ -73,10 +74,10 @@ def sendemail(title):
 status=check()
 if status==1:
   number+=1
-  sendemail('哈希宝单台不达标%s次#%s'%(number,bropcexe if bropc!=0 and mypc!=0 else '未运行!!'))
+  sendemail('哈希宝单台不达标%s次#%s'%(number,bropcexe))
 elif status==2:
   number+=1
-  sendemail('哈希宝不达标%s次#%s'%(number,bropcexe if bropc!=0 and mypc!=0 else '未运行!!'))
+  sendemail('哈希宝不达标%s次#%s'%(number,bropcexe))
 elif status==0:
   number=0
   sendemail('哈希宝达标')
