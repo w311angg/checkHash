@@ -73,3 +73,4 @@ jobs:
         command: |
           proxychains python -u ckhash.py
         on_retry_command: sudo systemctl restart shadowsocks-libev-local@client; sleep 5s
+    - uses: gautamkrishnar/keepalive-workflow@master
