@@ -75,12 +75,12 @@ def sendemail(title):
 
 弟弟 %s
 
-__**[刷新](http://pi.lan/checkhash.php)**__\
+_**[刷新](http://pi.lan/checkhash.php)**_\
 """%(current,mypctext,bropctext)
   print(title)
   print(content)
   #jmail('checkHash',title,content,html=True)
-  serverchen('checkHash - '+title,content)
+  serverchen(title,content)
 
 status=check()
 if status==1:
