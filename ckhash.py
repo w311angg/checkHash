@@ -1,6 +1,7 @@
 import requests
 from pytools.pytools import jmail
 from pytools.pytools import isnewday
+from pytools.pytools import serverchen
 
 current=20
 
@@ -61,15 +62,25 @@ def check():
     return 0
 
 def sendemail(title):
+#  content="""\
+#基准速率 %s MH/s<br>
+#我 %s<br>
+#弟弟 %s<br>
+#<i><b><a href="http://pi.lan/checkhash.php">刷新</a></b></i>\
+#"""%(current,mypctext,bropctext)
   content="""\
-基准速率 %s MH/s<br>
-我 %s<br>
-弟弟 %s<br>
-<i><b><a href="http://pi.lan/checkhash.php">刷新</a></b></i>\
+基准速率 %s MH/s
+
+我 %s
+
+弟弟 %s
+
+__**[刷新](http://pi.lan/checkhash.php)**__\
 """%(current,mypctext,bropctext)
   print(title)
   print(content)
-  jmail('checkHash',title,content,html=True)
+  #jmail('checkHash',title,content,html=True)
+  serverchen('checkHash - '+title,content)
 
 status=check()
 if status==1:
