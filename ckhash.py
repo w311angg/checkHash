@@ -70,13 +70,10 @@ def sendemail(title):
 #"""%(current,mypctext,bropctext)
   content="""\
 基准速率 %s MH/s
-
 我 %s
-
 弟弟 %s
-
 _**[刷新](http://pi.lan/checkhash.php)**_\
-"""%(current,mypctext,bropctext)
+"""%(current,mypctext,bropctext).replace('\n','\n\n')
   print(title)
   print(content)
   #jmail('checkHash',title,content,html=True)
