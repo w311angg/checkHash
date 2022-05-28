@@ -87,7 +87,7 @@ if status==1:
 elif status==2:
   number+=1
   sendemail('哈希宝不达标%s次#%s'%(number,bropcexe))
-elif status==0:
+elif status==0 and number!=0:
   number=0
   sendemail('哈希宝达标')
 
