@@ -84,7 +84,7 @@ status=check()
 if status==1:
   number+=1
   sendemail('哈希宝单台不达标%s次#%s'%(number,bropcexe))
-elif status==2:
+elif status==2 and bropctext!='pausing':
   number+=1
   sendemail('哈希宝不达标%s次#%s'%(number,bropcexe))
 elif status==0 and number!=0:
