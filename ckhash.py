@@ -83,11 +83,11 @@ _**[刷新](http://pi.lan/checkhash.php)**_\
 status=check()
 if status==1:
   number+=1
-  if bropctext!='pausing':
+  if bropcexe!='pausing':
     sendemail('哈希宝单台不达标%s小时#%s'%(number,bropcexe))
 elif status==2:
   number+=1
-  if bropctext!='pausing':
+  if bropcexe!='pausing':
     sendemail('哈希宝不达标%s小时#%s'%(number,bropcexe))
 elif status==0 and number!=0:
   number=0
