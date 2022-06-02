@@ -3,7 +3,7 @@ from pytools.pytools import jmail
 from pytools.pytools import isnewday
 from pytools.pytools import serverchen
 
-current=20
+current=19
 
 s=requests.Session()
 if isnewday():
