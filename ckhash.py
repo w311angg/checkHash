@@ -70,8 +70,8 @@ def sendemail(title):
 #"""%(current,mypctext,bropctext)
   content="""\
 基准速率 %s MH/s
-我 %s
-弟弟 %s
+我 %s [关闭](http://mypc.lan:1234/stophigh)
+弟弟 %s [关闭](http://bropc.lan:1234/stophigh)
 _**[刷新](http://pi.lan/checkhash.php)**_\
 """%(current,mypctext,bropctext)
   content=content.replace('\n','\n\n')
