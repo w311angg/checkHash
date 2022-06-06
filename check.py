@@ -92,14 +92,14 @@ def stopbrohigh():
 
 status=check()
 if status==1:
-  if bropcexe!='pausing':
+  if bropcexe!='pausing' and mypcexe!='pausing':
     number+=1
     stopbrohigh()
     sendemail('哈希宝单台不达标%s小时#%s'%(number,bropcexe if not shortmsg else shortmsg))
   else:
     number=0
 elif status==2:
-  if bropcexe!='pausing':
+  if bropcexe!='pausing' and bropcexe!='pausing':
     number+=1
     stopbrohigh()
     sendemail('哈希宝不达标%s小时#%s'%(number,bropcexe if not shortmsg else shortmsg))
