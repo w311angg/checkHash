@@ -99,25 +99,25 @@ def numberadd():
 
 status=check()
 if status==1:
-  if bropcexe!='pausing' and mypcexe!='pausing':
-    numberadd()
-    stopbrohigh()
-    if number==1 or number>=4:
-      sendemail('哈希宝单台不达标%s小时#%s'%(number,bropcexe if not shortmsg else shortmsg))
-  else:
-    number=0
+  numberadd()
+  title='哈希宝单台不达标%s小时#%s'%(number,'%s')
 elif status==2:
-  if bropcexe!='pausing' and bropcexe!='pausing':
-    numberadd()
-    stopbrohigh()
-    if number==1 or number>=4:
-      sendemail('哈希宝不达标%s小时#%s'%(number,bropcexe if not shortmsg else shortmsg))
-  else:
-    number=0
+  numberadd()
+  title='哈希宝不达标%s小时#%s'%(number,'%s')
 elif status==0:
   if number!=0:
     sendemail('哈希宝达标')
   number=0
+
+if bropc<current and bropcexe!='pausing':
+  stopbrohigh()
+elif bropcexe=='pausing' or mypcexe=='pausing':
+  number=0
+
+title=title%bropcexe if not shortmsg else shortmsg
+print(title)
+if number==1 or number>=4:
+  sendemail(title)
 
 with open('num.txt','w') as f:
   f.write(str(number))
