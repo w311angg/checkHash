@@ -82,12 +82,13 @@ _**[刷新](http://pi.lan/checkhash.php)**_\
   serverchen(title,content)
 
 def stopbrohigh():
-  global shortmsg
+  global shortmsg, number
   if number>=5 and (bropcexe in blacklist):
     try:
       r=s.get('http://bropc.lan:1234/stophigh')
       if '.exe' in r.text:
         shortmsg='高占用已结束'
+        number=0
     except requests.exceptions.ConnectionError:
       shortmsg='连接出错'
 
