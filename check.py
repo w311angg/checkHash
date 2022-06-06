@@ -1,3 +1,4 @@
+import os
 import requests
 from pytools.pytools import jmail
 from pytools.pytools import isnewday
@@ -90,10 +91,15 @@ def stopbrohigh():
     except requests.exceptions.ConnectionError:
       shortmsg='连接出错'
 
+def numberadd():
+  global number
+  if os.environ['on']=='schedule':
+    number+=1
+
 status=check()
 if status==1:
   if bropcexe!='pausing' and mypcexe!='pausing':
-    number+=1
+    numberadd()
     stopbrohigh()
     if number==1 or number==4:
       sendemail('哈希宝单台不达标%s小时#%s'%(number,bropcexe if not shortmsg else shortmsg))
@@ -101,7 +107,7 @@ if status==1:
     number=0
 elif status==2:
   if bropcexe!='pausing' and bropcexe!='pausing':
-    number+=1
+    numberadd()
     stopbrohigh()
     if number==1 or number==4:
       sendemail('哈希宝不达标%s小时#%s'%(number,bropcexe if not shortmsg else shortmsg))
