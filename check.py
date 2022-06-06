@@ -6,14 +6,14 @@ from pytools.pytools import serverchen
 current=19
 
 s=requests.Session()
-if isnewday():
+shortmsg=''
+try:
+  with open('num.txt') as f:
+    number=int(f.read())
+except FileNotFoundError:
   number=0
-else:
-  try:
-    with open('num.txt') as f:
-      number=int(f.read())
-  except FileNotFoundError:
-    number=0
+with open('exeblacklist.txt') as f:
+  blacklist=f.read().splitlines()
 
 def hash(url):
   try:
@@ -80,18 +80,35 @@ _**[刷新](http://pi.lan/checkhash.php)**_\
   #jmail('checkHash',title,content,html=True)
   serverchen(title,content)
 
+def stopbrohigh():
+  global shortmsg
+  if number>=5 and (bropcexe in blacklist):
+    try:
+      r=s.get('http://bropc.lan:1234/stophigh')
+      if '.exe' in r.text:
+        shortmsg='高占用已结束'
+    except requests.exceptions.ConnectionError:
+      shortmsg='连接出错'
+
 status=check()
 if status==1:
-  number+=1
   if bropcexe!='pausing':
-    sendemail('哈希宝单台不达标%s小时#%s'%(number,bropcexe))
+    number+=1
+    stopbrohigh()
+    sendemail('哈希宝单台不达标%s小时#%s'%(number,bropcexe if not shortmsg else shortmsg))
+  else:
+    number=0
 elif status==2:
-  number+=1
   if bropcexe!='pausing':
-    sendemail('哈希宝不达标%s小时#%s'%(number,bropcexe))
-elif status==0 and number!=0:
+    number+=1
+    stopbrohigh()
+    sendemail('哈希宝不达标%s小时#%s'%(number,bropcexe if not shortmsg else shortmsg))
+  else:
+    number=0
+elif status==0:
+  if number!=0:
+    sendemail('哈希宝达标')
   number=0
-  sendemail('哈希宝达标')
 
 with open('num.txt','w') as f:
   f.write(str(number))
