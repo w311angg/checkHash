@@ -106,7 +106,7 @@ elif status==2:
   title='哈希宝不达标%s小时#%s'%(number,'%s')
 elif status==0:
   if number!=0:
-    sendemail('哈希宝达标')
+    title='哈希宝达标'
   number=0
 
 if bropc<current and bropcexe!='pausing':
@@ -114,7 +114,7 @@ if bropc<current and bropcexe!='pausing':
 elif bropcexe=='pausing' or mypcexe=='pausing':
   number=0
 
-title=title%bropcexe if not shortmsg else shortmsg
+title=title%(bropcexe if not shortmsg else shortmsg)
 print(title)
 if number==1 or number>=4:
   sendemail(title)
