@@ -101,7 +101,7 @@ if status==1:
   if bropcexe!='pausing' and mypcexe!='pausing':
     numberadd()
     stopbrohigh()
-    if number==1 or number==4:
+    if number==1 or number>=4:
       sendemail('哈希宝单台不达标%s小时#%s'%(number,bropcexe if not shortmsg else shortmsg))
   else:
     number=0
@@ -109,7 +109,7 @@ elif status==2:
   if bropcexe!='pausing' and bropcexe!='pausing':
     numberadd()
     stopbrohigh()
-    if number==1 or number==4:
+    if number==1 or number>=4:
       sendemail('哈希宝不达标%s小时#%s'%(number,bropcexe if not shortmsg else shortmsg))
   else:
     number=0
