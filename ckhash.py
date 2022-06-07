@@ -48,6 +48,7 @@ def bropcHash():
 mypchash=mypcHash()
 mypc=mypchash[0]
 mypctext=mypchash[1]
+mypcexe=mypchash[2]
 
 bropchash=bropcHash()
 bropc=bropchash[0]
