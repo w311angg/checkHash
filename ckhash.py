@@ -58,7 +58,7 @@ bropcexe=bropchash[2]
 def check():
   if mypc+bropc<current:
     return 1 #单台不达标
-  elif mypc+bropc<current*2:
+  elif mypc<current or bropc<current:
     return 2 #不达标
   else:
     return 0
