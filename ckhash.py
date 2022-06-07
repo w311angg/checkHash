@@ -116,7 +116,10 @@ if bropc<current and bropcexe!='pausing' and number>=5 and (bropcexe in blacklis
 elif bropcexe=='pausing' or mypcexe=='pausing':
   number=0
 
-title=title%(bropcexe if not shortmsg else shortmsg)
+try:
+  title=title%(bropcexe if not shortmsg else shortmsg)
+except TypeError:
+  pass
 print(title)
 if number==1 or number>=4:
   sendemail(title)
