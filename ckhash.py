@@ -109,6 +109,7 @@ elif status==0:
   if number!=0:
     title='哈希宝达标'
   number=0
+  title=''
 
 if bropc<current and bropcexe!='pausing' and number>=5 and (bropcexe in blacklist):
   stopbrohigh()
