@@ -53,6 +53,7 @@ jobs:
           ./cookies.txt
           ./num.txt
           ./isnewday.txt
+          ./errnum.txt
         key: build-${{ github.run_id }}
         restore-keys: |
           build-
