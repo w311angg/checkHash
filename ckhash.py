@@ -143,3 +143,5 @@ if forcesend or number==1 or number>=4:
 
 with open('num.txt','w') as f:
   f.write(str(number))
+with open('errnum.txt','w') as f:
+  f.write(str(number))
