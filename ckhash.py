@@ -101,6 +101,7 @@ if pausing or connectionError:
   if connectionError:
     errnum+=1
     title='哈希宝连接出错%s小时'%errnum
+    forcesend=number
 elif status==1:
   numberadd()
   title='哈希宝单台不达标%s小时#%s'%(number,'%s')
