@@ -8,6 +8,7 @@ current=19
 
 s=requests.Session()
 shortmsg=''
+forcesend=0
 try:
   with open('num.txt') as f:
     number=int(f.read())
@@ -15,6 +16,8 @@ except FileNotFoundError:
   number=0
 with open('exeblacklist.txt') as f:
   blacklist=f.read().splitlines()
+with open('errnum.txt') as f:
+  errnum=int(f.read())
 
 def hash(url):
   try:
@@ -75,15 +78,15 @@ def sendemail(title):
   print('已发送邮件')
 
 def stopbrohigh():
-  global shortmsg, number
-  if number>=5 and (bropcexe in blacklist):
-    try:
-      r=s.get('http://bropc.lan:1234/stophigh')
-      if '.exe' in r.text:
-        shortmsg='高占用已结束'
-        number=0
-    except requests.exceptions.ConnectionError:
-      shortmsg='连接出错'
+  global shortmsg
+  try:
+    r=s.get('http://bropc.lan:1234/stophigh')
+    if '.exe' in r.text:
+      shortmsg='高占用已结束'
+  except requests.exceptions.ConnectionError:
+    shortmsg='连接出错'
+    #因为check时出错已计算errnum
+    #errnum+=1
 
 def numberadd():
   global number
@@ -91,7 +94,14 @@ def numberadd():
     number+=1
 
 status=check()
-if status==1:
+connectionError=('连接出错' in (mypcexe,bropcexe))
+pausing=('pausing' in (bropcexe,mypcexe))
+if pausing or connectionError:
+  number=0
+  if connectionError:
+    errnum+=1
+    title='哈希宝连接出错%s小时'%errnum
+elif status==1:
   numberadd()
   title='哈希宝单台不达标%s小时#%s'%(number,'%s')
 elif status==2:
@@ -99,16 +109,25 @@ elif status==2:
   title='哈希宝不达标%s小时#%s'%(number,'%s')
 elif status==0:
   if number!=0:
+    forcesend=number
     title='哈希宝达标'
   else:
     title=''
   number=0
 
+if not connectionError:
+  errnum=0
+
+#“连接出错”的情况包含在bropcexe中，而blacklist中没有“连接出错”
 if bropc<current and bropcexe!='pausing' and number>=5 and (bropcexe in blacklist):
   stopbrohigh()
-elif bropcexe=='pausing' or mypcexe=='pausing':
+  forcesend=number
   number=0
 
+try:
+  title=title%(bropcexe if not shortmsg else shortmsg)
+except TypeError:
+  pass
 content="""\
 基准速率 %s MH/s
 我 %s [关闭](http://mypc.lan:1234/stophigh)
@@ -117,15 +136,8 @@ _**[刷新](http://pi.lan/checkhash.php)**_\
 """%(current,mypctext,bropctext)
 content=content.replace('\n','\n\n')
 
-try:
-  title=title%(bropcexe if not shortmsg else shortmsg)
-except TypeError:
-  pass
-if not title:
-  print(number)
-else:
-  print(title)
-if number==1 or number>=4:
+print(title,number)
+if forcesend or number==1 or number>=4:
   sendemail(title)
 
 with open('num.txt','w') as f:
