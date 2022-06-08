@@ -120,7 +120,10 @@ try:
   title=title%(bropcexe if not shortmsg else shortmsg)
 except TypeError:
   pass
-print(title)
+if not title:
+  print(number)
+else:
+  print(title)
 if number==1 or number>=4:
   sendemail(title)
 
