@@ -70,17 +70,9 @@ def sendemail(title):
 #弟弟 %s<br>
 #<i><b><a href="http://pi.lan/checkhash.php">刷新</a></b></i>\
 #"""%(current,mypctext,bropctext)
-  content="""\
-基准速率 %s MH/s
-我 %s [关闭](http://mypc.lan:1234/stophigh)
-弟弟 %s [关闭](http://bropc.lan:1234/stophigh)
-_**[刷新](http://pi.lan/checkhash.php)**_\
-"""%(current,mypctext,bropctext)
-  content=content.replace('\n','\n\n')
-  print(title)
-  print(content)
   #jmail('checkHash',title,content,html=True)
   serverchen(title,content)
+  print('已发送邮件')
 
 def stopbrohigh():
   global shortmsg, number
@@ -108,13 +100,22 @@ elif status==2:
 elif status==0:
   if number!=0:
     title='哈希宝达标'
+  else:
+    title=''
   number=0
-  title=''
 
 if bropc<current and bropcexe!='pausing' and number>=5 and (bropcexe in blacklist):
   stopbrohigh()
 elif bropcexe=='pausing' or mypcexe=='pausing':
   number=0
+
+content="""\
+基准速率 %s MH/s
+我 %s [关闭](http://mypc.lan:1234/stophigh)
+弟弟 %s [关闭](http://bropc.lan:1234/stophigh)
+_**[刷新](http://pi.lan/checkhash.php)**_\
+"""%(current,mypctext,bropctext)
+content=content.replace('\n','\n\n')
 
 try:
   title=title%(bropcexe if not shortmsg else shortmsg)
