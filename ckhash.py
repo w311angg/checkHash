@@ -138,7 +138,7 @@ _**[刷新](http://pi.lan/checkhash.php)**_\
 """%(current,mypctext,bropctext)
 content=content.replace('\n','\n\n')
 
-print('number: %s\nforcesend: %s\ntitle: %s'%(number,forcesend,title))
+print('number: %s\nforcesend: %s\ntitle: %s\ncontent:\n%s'%(number,forcesend,title,content))
 if forcesend!=None or number==1 or number>=4:
   sendemail(title)
 
