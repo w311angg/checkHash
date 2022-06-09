@@ -8,7 +8,7 @@ current=19
 
 s=requests.Session()
 shortmsg=''
-forcesend=0
+forcesend=None
 try:
   with open('num.txt') as f:
     number=int(f.read())
@@ -97,11 +97,11 @@ status=check()
 connectionError=('连接出错' in (mypcexe,bropcexe))
 pausing=('pausing' in (bropcexe,mypcexe))
 if pausing or connectionError:
-  number=0
   if connectionError:
     errnum+=1
     title='哈希宝连接出错%s小时'%errnum
-    forcesend=number
+    forcesend=number+1
+  number=0
 elif status==1:
   numberadd()
   title='哈希宝单台不达标%s小时#%s'%(number,'%s')
@@ -110,20 +110,21 @@ elif status==2:
   title='哈希宝不达标%s小时#%s'%(number,'%s')
 elif status==0:
   if number!=0:
-    forcesend=number
+    forcesend=number+1
     title='哈希宝达标'
   else:
     title=''
   number=0
-
 if not connectionError:
   errnum=0
+if number>=6:
+  number=0
 
-#“连接出错”的情况包含在bropcexe中，而blacklist中没有“连接出错”
-if bropc<current and bropcexe!='pausing' and number>=5 and (bropcexe in blacklist):
+#“连接出错”的情况包含在bropcexe中，而blacklist中没有“连接出错”，number==5是为了防止5~6小时内打开新游戏被关闭
+if bropc<current and bropcexe!='pausing' and number==5 and (bropcexe in blacklist):
   stopbrohigh()
   forcesend=number
-  number=0
+  #number=0
 
 try:
   title=title%(bropcexe if not shortmsg else shortmsg)
@@ -137,8 +138,8 @@ _**[刷新](http://pi.lan/checkhash.php)**_\
 """%(current,mypctext,bropctext)
 content=content.replace('\n','\n\n')
 
-print(title,number)
-if forcesend or number==1 or number>=4:
+print(number,title)
+if forcesend!=None or number==1 or number>=4:
   sendemail(title)
 
 with open('num.txt','w') as f:
