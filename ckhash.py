@@ -123,7 +123,7 @@ if number>=6:
   number=0
 
 #“连接出错”的情况包含在bropcexe中，而blacklist中没有“连接出错”，number==5是为了防止5~6小时内打开新游戏被关闭
-if bropc<current and bropcexe!='pausing' and number==5 and (bropcexe in blacklist):
+if bropc<current and mypc>=current and bropcexe!='pausing' and number==5 and (bropcexe in blacklist):
   stopbrohigh()
   forcesend=number
   #number=0
