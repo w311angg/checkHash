@@ -101,6 +101,8 @@ if pausing or connectionError:
     errnum+=1
     title='哈希宝连接出错%s小时'%errnum
     forcesend=number+1
+  else:
+    title='哈希宝暂停中'
   number=0
 elif status==1:
   numberadd()
@@ -113,7 +115,7 @@ elif status==0:
     forcesend=number+1
     title='哈希宝达标'
   else:
-    title=''
+    title='哈希宝已达标'
   number=0
 if not connectionError:
   errnum=0
