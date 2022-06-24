@@ -1,23 +1,6 @@
 import os
 import requests
-from pytools.pytools import jmail
-from pytools.pytools import isnewday
 from pytools.pytools import serverchen
-
-current=19
-
-s=requests.Session()
-shortmsg=''
-forcesend=None
-try:
-  with open('num.txt') as f:
-    number=int(f.read())
-except FileNotFoundError:
-  number=0
-with open('exeblacklist.txt') as f:
-  blacklist=f.read().splitlines()
-with open('errnum.txt') as f:
-  errnum=int(f.read())
 
 def hash(url):
   try:
@@ -40,7 +23,7 @@ def hash(url):
     hash=0
     text='ConnectionError'
     specialexe='连接出错'
-  return (hash,text,specialexe)
+  return hash,text,specialexe
 
 def mypcHash():
   return hash('http://mypc.lan:1234')
@@ -48,103 +31,46 @@ def mypcHash():
 def bropcHash():
   return hash('http://bropc.lan:1234')
 
-mypchash=mypcHash()
-mypc=mypchash[0]
-mypctext=mypchash[1]
-mypcexe=mypchash[2]
-
-bropchash=bropcHash()
-bropc=bropchash[0]
-bropctext=bropchash[1]
-bropcexe=bropchash[2]
-
-def check():
-  if mypc+bropc<current:
-    return 1 #单台不达标
-  elif mypc<current or bropc<current:
-    return 2 #不达标
-  else:
-    return 0
-
 def sendemail(title):
-#  content="""\
-#基准速率 %s MH/s<br>
-#我 %s<br>
-#弟弟 %s<br>
-#<i><b><a href="http://pi.lan/checkhash.php">刷新</a></b></i>\
-#"""%(current,mypctext,bropctext)
-  #jmail('checkHash',title,content,html=True)
+  content=content.replace('\n','\n\n')
   serverchen(title,content)
   print('已发送邮件')
 
-def stopbrohigh():
-  global shortmsg
+
+if __name__=='__main__':
+  current=19
+
+  s=requests.Session()
   try:
-    r=s.get('http://bropc.lan:1234/stophigh')
-    if '.exe' in r.text:
-      shortmsg='高占用已结束'
-  except requests.exceptions.ConnectionError:
-    shortmsg='连接出错'
-    #因为check时出错已计算errnum
-    #errnum+=1
+    with open('num.txt') as f:
+      number=int(f.read())
+  except FileNotFoundError:
+    number=0
 
-def numberadd():
-  global number
-  if os.environ['on']=='schedule':
-    number+=1
-
-status=check()
-connectionError=('连接出错' in (mypcexe,bropcexe))
-pausing=('pausing' in (bropcexe,mypcexe))
-if pausing or connectionError:
-  if connectionError:
-    errnum+=1
-    title='哈希宝连接出错%s小时'%errnum
-    forcesend=number+1
-  else:
-    title='哈希宝暂停中'
-  number=0
-elif status==1:
-  numberadd()
-  title='哈希宝单台不达标%s小时#%s'%(number,'%s')
-elif status==2:
-  numberadd()
-  title='哈希宝不达标%s小时#%s'%(number,'%s')
-elif status==0:
-  if number!=0:
-    forcesend=number+1
-    title='哈希宝达标'
-  else:
-    title='哈希宝已达标'
-  number=0
-if not connectionError:
-  errnum=0
-if number>=6:
-  number=0
-
-#“连接出错”的情况包含在bropcexe中，而blacklist中没有“连接出错”，number==5是为了防止5~6小时内打开新游戏被关闭
-if bropc<current and mypc>=current and bropcexe!='pausing' and number==5 and (bropcexe in blacklist):
-  stopbrohigh()
-  forcesend=number
-  #number=0
-
-try:
-  title=title%(bropcexe if not shortmsg else shortmsg)
-except TypeError:
-  pass
-content="""\
+  content="""\
 基准速率 %s MH/s
 我 %s [关闭](http://mypc.lan:1234/stophigh)
 弟弟 %s [关闭](http://bropc.lan:1234/stophigh)
 _**[刷新](http://pi.lan/checkhash.php)**_\
 """%(current,mypctext,bropctext)
-content=content.replace('\n','\n\n')
 
-print('number: %s\nforcesend: %s\ntitle: %s\ncontent:\n%s'%(number,forcesend,title,content))
-if forcesend!=None or number==1 or number>=4:
-  sendemail(title)
+  if mypc+bropc<current: #单台不达标
+    number+=1
+    title='哈希宝单台不达标%s小时#%s'%(number,bropcexe)
+    if number>=6:
+      sendemail(title)
+  elif mypc<current or bropc<current: #不达标
+    number+=1
+    title='哈希宝不达标%s小时#%s'%(number,bropcexe)
+    if number>=6:
+      sendemail(title)
+  else:
+    if number!=0:
+      number=0
+      title='哈希宝已达标'
+      #sendemail(title)
 
-with open('num.txt','w') as f:
-  f.write(str(number))
-with open('errnum.txt','w') as f:
-  f.write(str(errnum))
+  print('number: %s\ntitle: %s\ncontent:\n%s'%(number,title,content))
+
+  with open('num.txt','w') as f:
+    f.write(str(number))
