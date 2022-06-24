@@ -54,7 +54,7 @@ if num>=5:
   serverchen('弟弟高占用达%s次#%s'%(num,reason),raw)
 
 print('before: '+str(config))
-config={'num':num,'running':exe,'network':network}
+config={'num':num,'running':exe if (exe!='连接出错' and exe!='pausing') else config['running'],'network':network}
 print('after: '+str(config))
 print(raw)
 if on=='schedule':
