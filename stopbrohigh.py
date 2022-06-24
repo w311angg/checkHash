@@ -53,9 +53,9 @@ if num>=5:
     reason='未知错误'
   serverchen('弟弟高占用达%s次#%s'%(num,reason),raw)
 
-print('before: '+config)
+print('before: '+str(config))
 config={'num':num,'running':exe,'network':network}
-print('after: '+config)
+print('after: '+str(config))
 print(raw)
 if on=='schedule':
   pickledump(config,'stopbrohigh.txt')
