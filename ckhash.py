@@ -48,6 +48,9 @@ if __name__=='__main__':
   except FileNotFoundError:
     number=0
 
+  mypc,mypctext,mypcexe=mypcHash()
+  bropc,bropctext,bropcexe=mypcHash()
+
   content="""\
 基准速率 %s MH/s
 我 %s [关闭](http://mypc.lan:1234/stophigh)
