@@ -50,8 +50,8 @@ def bropcHash():
   return hash('http://bropc.lan:1234')
 
 def sendemail(title):
-  content=content.replace('\n','\n\n')
-  serverchen(title,content)
+  contentmd=content.replace('\n','\n\n')
+  serverchen(title,contentmd)
   print('已发送邮件')
 
 if __name__=='__main__':
