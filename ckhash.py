@@ -3,6 +3,8 @@ import requests
 from pytools.pytools import serverchen
 
 def hash(url):
+  if __name__!='__main__':
+    s=requests.Session()
   try:
     with s.get(url) as resp:
       text=resp.text
@@ -35,7 +37,6 @@ def sendemail(title):
   content=content.replace('\n','\n\n')
   serverchen(title,content)
   print('已发送邮件')
-
 
 if __name__=='__main__':
   current=19
