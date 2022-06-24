@@ -9,7 +9,8 @@ current=19
 s=requests.Session()
 on=os.environ['on']
 notice=''
-config=pickleread('stopbrohigh.txt',{'num':0,'running':'','network':True})
+pc,raw,exe=bropcHash()
+config=pickleread('stopbrohigh.txt',{'num':0,'running':exe,'network':True})
 num=config['num']
 running=config['running']
 network=config['network']
@@ -24,8 +25,6 @@ def stopbrohigh():
   except requests.exceptions.ConnectionError:
     return '连接出错'
 
-pc,raw,exe=bropcHash()
-
 if exe=='连接出错':
   network=False
 elif network==False: #首次恢复连接
@@ -35,7 +34,7 @@ else: #连接正常
   network=True
 
 if pc<current:
-  if running!=exe or exe=='pausing':
+  if (running!=exe and '.exe' in running) or exe=='pausing':
     num=0
   else:
     num+=1
@@ -54,7 +53,7 @@ if num>=5:
   serverchen('弟弟高占用达%s次#%s'%(num,reason),raw)
 
 print('before: '+str(config))
-config={'num':num,'running':exe if (exe!='连接出错' and exe!='pausing') else config['running'],'network':network}
+config={'num':num,'running':exe,'network':network}
 print('after: '+str(config))
 print(raw)
 if on=='schedule':
