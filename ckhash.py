@@ -13,6 +13,8 @@ if __name__=='__main__':
     number=0
 
 def hash(url):
+  if __name__!='__main__':
+    s=requests.Session()
   try:
     with s.get(url) as resp:
       text=resp.text
