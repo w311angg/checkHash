@@ -49,7 +49,7 @@ if __name__=='__main__':
     number=0
 
   mypc,mypctext,mypcexe=mypcHash()
-  bropc,bropctext,bropcexe=mypcHash()
+  bropc,bropctext,bropcexe=bropcHash()
 
   content="""\
 基准速率 %s MH/s
