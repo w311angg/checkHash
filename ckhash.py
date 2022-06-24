@@ -57,16 +57,15 @@ if __name__=='__main__':
 弟弟 %s [关闭](http://bropc.lan:1234/stophigh)
 _**[刷新](http://pi.lan/checkhash.php)**_\
 """%(current,mypctext,bropctext)
-
   if mypc+bropc<current: #单台不达标
     number+=1
     title='哈希宝单台不达标%s小时#%s'%(number,bropcexe)
-    if number>=6:
+    if number>=6 and bropcexe!='pausing':
       sendemail(title)
   elif mypc<current or bropc<current: #不达标
     number+=1
     title='哈希宝不达标%s小时#%s'%(number,bropcexe)
-    if number>=6:
+    if number>=6 and bropcexe!='pausing':
       sendemail(title)
   else:
     if number!=0:
