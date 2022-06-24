@@ -39,7 +39,7 @@ if pc<current:
     num=0
   else:
     num+=1
-  if (pcexe in blacklist) and bronum==5 and network==True:
+  if (exe in blacklist) and bronum==5 and network==True:
     notice=stopbrohigh()
 else:
   num=0
