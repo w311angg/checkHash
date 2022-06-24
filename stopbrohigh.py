@@ -32,13 +32,14 @@ elif network==False: #首次恢复连接
   network=True
 else: #连接正常
   network=True
+if running!=exe and '.exe' in running:
+  num=0
 
-if pc<current:
-  if (running!=exe and '.exe' in running) or exe=='pausing':
-    num=0
-  else:
-    num+=1
-  if (exe in blacklist) and bronum==5 and network==True:
+if exe=='pausing':
+  num=0
+elif pc<current:
+  num+=1
+  if (exe in blacklist) and num==5 and network==True:
     notice=stopbrohigh()
 else:
   num=0
