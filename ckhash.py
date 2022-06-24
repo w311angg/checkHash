@@ -2,9 +2,17 @@ import os
 import requests
 from pytools.pytools import serverchen
 
+if __name__=='__main__':
+  current=19
+
+  s=requests.Session()
+  try:
+    with open('num.txt') as f:
+      number=int(f.read())
+  except FileNotFoundError:
+    number=0
+
 def hash(url):
-  if __name__!='__main__':
-    s=requests.Session()
   try:
     with s.get(url) as resp:
       text=resp.text
@@ -39,15 +47,6 @@ def sendemail(title):
   print('已发送邮件')
 
 if __name__=='__main__':
-  current=19
-
-  s=requests.Session()
-  try:
-    with open('num.txt') as f:
-      number=int(f.read())
-  except FileNotFoundError:
-    number=0
-
   mypc,mypctext,mypcexe=mypcHash()
   bropc,bropctext,bropcexe=bropcHash()
 
