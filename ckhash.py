@@ -73,6 +73,7 @@ _**[刷新](http://pi.lan/checkhash.php)**_\
       number=0
       title='哈希宝已达标'
       #sendemail(title)
+    title='哈希宝达标'
 
   print('number: %s\ntitle: %s\ncontent:\n%s'%(number,title,content))
 
