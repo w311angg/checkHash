@@ -18,7 +18,7 @@ blacklist={}
 with open('exeblacklist.txt') as f:
   for i in [i.split() for i in f.read().splitlines()]:
     name=i[0]
-    times=i[1]
+    times=int(i[1])
     blacklist[name]['times']=times
 
 def stopbrohigh():
