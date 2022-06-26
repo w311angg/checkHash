@@ -14,8 +14,12 @@ config=pickleread('stopbrohigh.txt',{'num':0,'running':exe,'network':True})
 num=config['num']
 running=config['running']
 network=config['network']
+blacklist={}
 with open('exeblacklist.txt') as f:
-  blacklist=f.read().splitlines()
+  for i in [i.split() for i in f.read().splitlines()]:
+    name=i[0]
+    times=i[1]
+    blacklist[name]['times']=times
 
 def stopbrohigh():
   try:
@@ -39,12 +43,12 @@ if exe=='pausing':
   num=0
 elif pc<current:
   num+=1
-  if (exe in blacklist) and num==5 and network==True:
+  if (exe in blacklist) and num==blacklist[exe]['times'] and network==True:
     notice=stopbrohigh()
 else:
   num=0
 
-if num>=5:
+if num>=5 or (exe in blacklist and num>=blacklist[exe]['times']-1):
   if network==False:
     reason='连接出错'
   elif notice:
