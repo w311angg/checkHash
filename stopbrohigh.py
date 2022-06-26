@@ -61,6 +61,7 @@ if num>=5 or (exe in blacklist and num>=blacklist[exe]['times']-1):
 print('before: '+str(config))
 config={'num':num,'running':exe,'network':network}
 print('after: '+str(config))
+print('blacklist: '+str(blacklist))
 print(raw)
 if on=='schedule':
   pickledump(config,'stopbrohigh.txt')
