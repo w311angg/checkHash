@@ -1,1 +1,2 @@
 ModernWarfare.exe 2
+csgo.exe 2
