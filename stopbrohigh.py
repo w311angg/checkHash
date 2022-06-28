@@ -44,7 +44,7 @@ if exe=='pausing':
   num=0
 elif pc<current:
   num+=1
-  if (exe in blacklist) and num==blacklist[exe]['times'] and network==True:
+  if (exe in blacklist) and num%blacklist[exe]['times']==0 and network==True:
     notice=stopbrohigh()
 else:
   num=0
