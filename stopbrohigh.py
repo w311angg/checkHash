@@ -56,6 +56,8 @@ if num>=5 or (exe in blacklist and num>=blacklist[exe]['times']-1):
     reason=notice
   elif not exe in blacklist:
     reason='不在黑名单'
+  elif num%blacklist[exe]['times']==blacklist[exe]['times']-1:
+    reason='即将关闭'
   else:
     reason='未知错误'
   serverchen('弟弟高占用达%s次#%s'%(num,reason),raw)
