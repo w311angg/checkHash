@@ -3,3 +3,4 @@ csgo.exe 2
 hl2.exe 2
 ravenfield.exe 4
 aces.exe 1
+DCS.exe 3
