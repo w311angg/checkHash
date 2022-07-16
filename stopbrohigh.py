@@ -54,6 +54,8 @@ if num>=5 or (exe in blacklist and num>=blacklist[exe]['times']-1):
     reason='连接出错'
   elif notice:
     reason=notice
+  elif exe=='not running!!':
+    reason=exe
   elif not exe in blacklist:
     reason='不在黑名单'
   elif num%blacklist[exe]['times']==blacklist[exe]['times']-1:
