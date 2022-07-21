@@ -25,7 +25,7 @@ with open('exeblacklist.txt') as f:
 def stopbrohigh():
   try:
     r=s.get('http://bropc.lan:1234/stophigh')
-    if '.exe' in r.text:
+    if r.text[-4:]=='.exe':
       return '高占用已结束'
   except requests.exceptions.ConnectionError:
     return '连接出错'
@@ -37,7 +37,7 @@ elif network==False: #首次恢复连接
   network=True
 else: #连接正常
   network=True
-if running!=exe and '.exe' in running:
+if running!=exe and running[-4:]=='.exe':
   num=0
 
 if exe=='pausing':
