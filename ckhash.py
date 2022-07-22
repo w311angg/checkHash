@@ -62,9 +62,7 @@ if __name__=='__main__':
 _**[刷新](http://pi.lan/checkhash.php)**_\
 """%(current,mypctext,bropctext)
 
-  if bropcexe in blacklist or bropcexe[-4:]!='.exe':
-    print('由stopbrohigh处理，不作提醒')
-  elif mypc+bropc<current: #单台不达标
+  if mypc+bropc<current: #单台不达标
     number+=1
     title='哈希宝单台不达标%s小时#%s'%(number,bropcexe)
     if number>=6 and bropcexe!='pausing':
