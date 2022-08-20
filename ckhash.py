@@ -20,20 +20,26 @@ def hash(url):
   s=requests.Session()
   try:
     with s.get(url) as resp:
-      text=resp.text
-      data=text.split(', ')
-      status=data[0]
-      if len(data)==1 or len(data)==2:
+      code=resp.status_code
+      if code!=200:
         hash=0
-        specialexe='pausing' if 'pausing' in status else status
+        text='ConnectionError'
+        specialexe='连接出错'
       else:
-        hash=data[2].replace(' MH/s','')
-        if hash=='N/A':
+        text=resp.text
+        data=text.split(', ')
+        status=data[0]
+        if len(data)==1 or len(data)==2:
           hash=0
-          specialexe='未运行!!'
+          specialexe=status
         else:
-          hash=float(hash)
-        specialexe=data[3]
+          hash=data[2].replace(' MH/s','')
+          if hash=='N/A':
+            hash=0
+            specialexe='未运行!!'
+          else:
+            hash=float(hash)
+            specialexe=data[3]
   except requests.exceptions.ConnectionError:
     hash=0
     text='ConnectionError'
