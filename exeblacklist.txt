@@ -5,3 +5,4 @@ ravenfield.exe 4
 aces.exe 1
 DCS.exe 3
 RainbowSix.exe 1
+EscapeFromTarkov.exe 1
