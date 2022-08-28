@@ -30,8 +30,8 @@ def hash(url):
         data=text.split(', ')
         status=data[0]
         if 'pausing' in status: #pausing后会接还剩多久时间
-            hash=0
-            specialexe='pausing'
+          hash=0
+          specialexe='pausing'
         elif status=='running':
           hash=data[2].replace(' MH/s','')
           if hash=='N/A':
