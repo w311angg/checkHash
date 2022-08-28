@@ -29,10 +29,10 @@ def hash(url):
         text=resp.text
         data=text.split(', ')
         status=data[0]
-        if len(data)==1 or len(data)==2:
-          hash=0
-          specialexe=status
-        else:
+        if 'pausing' in status: #pausing后会接还剩多久时间
+            hash=0
+            specialexe='pausing'
+        elif status=='running':
           hash=data[2].replace(' MH/s','')
           if hash=='N/A':
             hash=0
@@ -40,6 +40,9 @@ def hash(url):
           else:
             hash=float(hash)
             specialexe=data[3]
+        else:
+            hash=0
+            specialexe=status
   except requests.exceptions.ConnectionError:
     hash=0
     text='ConnectionError'
