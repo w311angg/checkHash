@@ -44,7 +44,8 @@ def hash(url):
         else:
             hash=0
             specialexe=status
-  except requests.exceptions.ConnectionError:
+  except requests.exceptions.ConnectionError as e:
+    print(e.message)
     hash=0
     text='ConnectionError'
     specialexe='连接出错'
