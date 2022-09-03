@@ -81,10 +81,10 @@ _**[刷新](http://pi.lan/checkhash.php)**_\
   else:
     if number!=0:
       number=0
-      title='哈希宝已达标'
+      title='哈希宝我已达标'
       #sendemail(title)
     else:
-      title='哈希宝达标'
+      title='我哈希宝达标'
 
   print('number: %s\ntitle: %s\ncontent:\n%s'%(number,title,content))
 
