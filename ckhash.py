@@ -1,6 +1,7 @@
 import os
 import requests
-from pytools.pytools import serverchen, ifPowerOf2
+from pytools.pytools import serverchen
+from pytools.pytools import ifPowerOf2
 
 if __name__=='__main__':
   current=19
