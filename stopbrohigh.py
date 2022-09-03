@@ -2,6 +2,7 @@ import os
 import requests
 from pytools.pytools import pickledump
 from pytools.pytools import pickleread
+from pytools.pytools import ifPowerOf2
 from ckhash import *
 
 current=19
