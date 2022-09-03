@@ -49,7 +49,7 @@ elif pc<current:
 else:
   num=0
 
-if num>=5 or (exe in blacklist and num>=blacklist[exe]['times']-1):
+if (num>=5 and ifPowerOf2(num)) or (exe in blacklist and num>=blacklist[exe]['times']-1):
   if network==False:
     reason='连接出错'
   elif notice:
