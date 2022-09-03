@@ -1,6 +1,6 @@
 import os
 import requests
-from pytools.pytools import serverchen
+from pytools.pytools import serverchen, ifPowerOf2
 
 if __name__=='__main__':
   current=19
@@ -74,7 +74,7 @@ _**[刷新](http://pi.lan/checkhash.php)**_\
   if mypc<current: #我不达标
     number+=1
     title='哈希宝我不达标%s小时#%s'%(number,bropcexe)
-    if number>=6:
+    if number>=6 and ifPowerOf2(number):
       sendemail(title)
   else:
     if number!=0:
