@@ -76,7 +76,7 @@ _**[刷新](http://pi.lan/checkhash.php)**_\
   if mypc<current: #我不达标
     number+=1
     title='哈希宝我不达标%s小时#%s'%(number,bropcexe)
-    if number>=6 and ifOnePlusTwoPlusThree(number):
+    if (number>=6 and ifOnePlusTwoPlusThree(number)) or number==6:
       sendemail(title)
   else:
     if number!=0:
