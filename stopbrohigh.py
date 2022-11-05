@@ -47,6 +47,7 @@ elif pc<current:
   num+=1
   if (exe in blacklist) and num%blacklist[exe]['times']==0 and network==True:
     notice=stopbrohigh()
+    num=0
 else:
   num=0
 
