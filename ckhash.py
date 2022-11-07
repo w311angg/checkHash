@@ -4,7 +4,7 @@ from pytools.pytools import serverchen
 from pytools.pytools import ifOnePlusTwoPlusThree
 
 if __name__=='__main__':
-  current=19
+  current=18
 
   s=requests.Session()
   try:
