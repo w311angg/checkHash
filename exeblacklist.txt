@@ -2,7 +2,7 @@ ModernWarfare.exe 2
 csgo.exe 2
 hl2.exe 2
 ravenfield.exe 4
-aces.exe 1
+aces.exe 2
 DCS.exe 3
 RainbowSix.exe 1
 EscapeFromTarkov.exe 1
