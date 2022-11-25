@@ -54,6 +54,7 @@ elif pc<current:
 else:
   num=0
 
+def sendmessage():
 if ((num>=5 and ifOnePlusTwoPlusThree(num)) or num==5) or (exe in blacklist and num>=blacklist[exe]['times']-1):
   if network==False:
     reason='连接出错'
@@ -65,9 +66,12 @@ if ((num>=5 and ifOnePlusTwoPlusThree(num)) or num==5) or (exe in blacklist and 
     reason='不在黑名单'
   elif num%blacklist[exe]['times']==blacklist[exe]['times']-1:
     reason='即将关闭'
+    print('因已有检测是否使用而不提醒即将关闭')
+    return
   else:
     reason='关闭后仍不达标'
   serverchen('弟弟高占用达%s次#%s'%(num,reason),raw)
+sendmessage()
 
 print('before: '+str(config))
 config={'num':num,'running':exe,'network':network}
