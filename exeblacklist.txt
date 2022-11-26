@@ -6,3 +6,4 @@ aces.exe 2
 DCS.exe 3
 RainbowSix.exe 1
 EscapeFromTarkov.exe 1
+mowas_2.exe 1
