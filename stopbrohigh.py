@@ -11,6 +11,7 @@ s=requests.Session()
 on=os.environ['on']
 notice=''
 pc,raw,exe=bropcHash()
+status=raw.split(', ')[0]
 config=pickleread('stopbrohigh.txt',{'num':0,'running':exe,'network':True})
 num=config['num']
 running=config['running']
@@ -45,8 +46,12 @@ if running!=exe and running[-4:]=='.exe':
 
 if exe=='pausing':
   num=0
-elif pc<current:
-  num+=1
+elif pc<current or status=='checkonly':
+  if status!='checkonly':
+    num+=1
+  else:
+    if exe in blacklist:
+      num+=1
   if (exe in blacklist) and num%blacklist[exe]['times']==0 and network==True:
     notice=stopbrohigh()
     if notice=='因用户按键而取消':
