@@ -50,6 +50,7 @@ elif pc<current or status=='checkonly':
   if status!='checkonly':
     num+=1
   else:
+    print('处于checkonly模式')
     if exe in blacklist:
       num+=1
   if (exe in blacklist) and num%blacklist[exe]['times']==0 and network==True:
