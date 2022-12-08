@@ -33,7 +33,7 @@ def hash(url):
         if 'pausing' in status: #pausing后会接还剩多久时间
           hash=0
           specialexe='pausing'
-        elif status=='running':
+        elif status=='running' or (not status in ('not running!!','参数缺少矿机名')):
           hash=data[2].replace(' MH/s','')
           if hash=='N/A':
             hash=0
