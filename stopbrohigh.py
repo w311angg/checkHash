@@ -78,6 +78,9 @@ def sendmessage():
       reason='即将关闭'
       print('因已有检测是否使用而不提醒即将关闭')
       return
+    elif notice=='因用户按键而取消':
+      print('用户取消无需提醒')
+      return
     else:
       reason='关闭后仍不达标'
       print('关闭后仍不达标，可能是被用户取消过')
