@@ -51,7 +51,7 @@ elif pc<current or status=='checkonly':
     num+=1
   else:
     print('处于checkonly模式')
-    exe=[for i in raw.split(', ') if '.exe' in i][0]
+    exe=[i for i in raw.split(', ') if '.exe' in i][0]
     if exe in blacklist:
       num+=1
   if (exe in blacklist) and num%blacklist[exe]['times']==0 and network==True:
