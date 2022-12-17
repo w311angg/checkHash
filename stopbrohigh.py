@@ -56,6 +56,8 @@ elif pc<current or status=='checkonly':
       num+=1
   if (exe in blacklist) and num%blacklist[exe]['times']==0 and network==True:
     notice=stopbrohigh()
+    if notice=='因用户按键而取消':
+      print('因用户按键而取消')
 else:
   num=0
 
@@ -78,6 +80,8 @@ def sendmessage():
       return
     else:
       reason='关闭后仍不达标'
+      print('关闭后仍不达标，可能是被用户取消过')
+      return
     serverchen('弟弟高占用达%s次#%s'%(num,reason),raw)
 sendmessage()
 
