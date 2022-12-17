@@ -65,6 +65,9 @@ def sendmessage():
   if ((num>=5 and ifOnePlusTwoPlusThree(num)) or num==5) or (exe in blacklist and num>=blacklist[exe]['times']-1):
     if network==False:
       reason='连接出错'
+      if status=='checkonly':
+        print('处于checkonly模式，忽略连接出错，因为电脑可能休眠')
+        return
     elif notice:
       reason=notice
     elif exe=='not running!!':
