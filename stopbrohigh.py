@@ -56,8 +56,6 @@ elif pc<current or status=='checkonly':
       num+=1
   if (exe in blacklist) and num%blacklist[exe]['times']==0 and network==True:
     notice=stopbrohigh()
-    if notice=='因用户按键而取消':
-      num=0
 else:
   num=0
 
