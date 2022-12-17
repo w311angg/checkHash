@@ -69,6 +69,9 @@ def sendmessage():
         print('处于checkonly模式，忽略连接出错，因为电脑可能休眠')
         return
     elif notice:
+      if notice=='因用户按键而取消':
+        print('用户取消无需提醒')
+        return
       reason=notice
     elif exe=='not running!!':
       reason=exe
@@ -77,9 +80,6 @@ def sendmessage():
     elif num%blacklist[exe]['times']==blacklist[exe]['times']-1:
       reason='即将关闭'
       print('因已有检测是否使用而不提醒即将关闭')
-      return
-    elif notice=='因用户按键而取消':
-      print('用户取消无需提醒')
       return
     else:
       reason='关闭后仍不达标'
